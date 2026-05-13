@@ -903,8 +903,10 @@ if('serviceWorker' in navigator){
 <nav class="navbar navbar-idc sticky-top">
   <div class="container-fluid d-flex align-items-center justify-content-between">
     <div class="logo-idc">
-      <img src="Logo_IDC.png" width="221" height="83" alt=""/>
-      
+      <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+        <img src="Logo_IDC.png" width="221" height="83" alt=""/>
+        <circle cx="28" cy="28" r="16" fill="#f3a100"/>
+</svg>
       <div class="d-none d-md-block">
         <div class="logo-text">Gu&iacute;a APA 7 <small>Uso de IA Generativa</small></div>
       </div>
@@ -913,10 +915,10 @@ if('serviceWorker' in navigator){
       <div class="idc-dropdown d-none d-lg-block">
         <button class="btn-idc-outline btn-sm"><i class="bi bi-collection"></i> Recursos</button>
         <div class="idc-dropdown-content">
-          <a class="idc-dropdown-item" href="https://apastyle.apa.org/blog/citing-generative-ai" target="_blank"><i class="bi bi-link-45deg me-2"></i>APA Style Blog (2025)</a>
+          <a class="idc-dropdown-item" href="https://apastyle.apa.org/blog/cite-generative-ai-references" target="_blank"><i class="bi bi-link-45deg me-2"></i>APA Style Blog (2025)</a>
           <a class="idc-dropdown-item" href="https://publicationethics.org" target="_blank"><i class="bi bi-link-45deg me-2"></i>COPE Statement (2024)</a>
           <a class="idc-dropdown-item" href="https://idc.edu.pe" target="_blank"><i class="bi bi-link-45deg me-2"></i>IDC - P&aacute;gina oficial</a>
-          <a class="idc-dropdown-item" href="#herramientas" onclick="switchTab('atribuciones')"><i class="bi bi-file-text me-2"></i>Reglamento IA IDC (2026)</a>
+          <a class="idc-dropdown-item" <a href="https://tinyurl.com/fhb66ann" target="_blank" rel="noopener noreferrer"><i class="bi bi-file-text me-2"></i>Reglamento IA IDC (2026)</a> 
         </div>
       </div>
       <a href="https://idc.edu.pe" target="_blank" class="btn-idc-gold btn-sm"><i class="bi bi-globe"></i> <span class="d-none d-sm-inline">idc.edu.pe</span></a>
@@ -1427,17 +1429,61 @@ OpenAI. (2026). <em style="color:var(--idc-gold)">ChatGPT (GPT-4o)</em> [Modelo 
           <p>APA 7 / MLA / Chicago / Harvard / Vancouver / Turabian / IEEE / Personalizado</p>
         </div>
         <div class="card-body-idc">
+          <!-- Fila 1: Titulo -->
           <label class="idc-label">T&iacute;tulo del art&iacute;culo</label>
           <input class="idc-input" id="acTitle" placeholder="Escriba el t&iacute;tulo completo" oninput="generateAcademicCite()">
+
+          <!-- Fila 2: Autores -->
           <label class="idc-label">Autores (Apellido, Nombre; ...)</label>
-          <input class="idc-input" id="acAuthors" placeholder="Garc&iacute;a, Juan; L&oacute;pez, Mar&iacute;a" oninput="generateAcademicCite()">
-          <label class="idc-label">Revista</label>
-          <input class="idc-input" id="acJournal" placeholder="Journal of Design Research" oninput="generateAcademicCite()">
-          <label class="idc-label">A&ntilde;o</label>
-          <input class="idc-input" id="acYear" placeholder="2025" oninput="generateAcademicCite()">
-          <label class="idc-label">DOI</label>
-          <input class="idc-input" id="acDoi" placeholder="10.1016/j.design.2025.03.004" oninput="generateAcademicCite()">
-          <div class="d-flex gap-2 mt-2">
+          <input class="idc-input" id="acAuthors" placeholder="Quiroz Mart&iacute;nez, Mario; L&oacute;pez P&eacute;rez, Ana" oninput="generateAcademicCite()">
+
+          <!-- Fila 3: Revista + DOI -->
+          <div class="row g-2">
+            <div class="col-md-6">
+              <label class="idc-label">Revista</label>
+              <input class="idc-input" id="acJournal" placeholder="Ciencia Latina Revista Cient&iacute;fica" oninput="generateAcademicCite()">
+            </div>
+            <div class="col-md-6">
+              <label class="idc-label">DOI</label>
+              <input class="idc-input" id="acDoi" placeholder="10.37811/cl_rcm.v9i2.17370" oninput="generateAcademicCite()">
+            </div>
+          </div>
+
+          <!-- Fila 4: Ano + Volumen + Numero -->
+          <div class="row g-2 mt-1">
+            <div class="col-md-4">
+              <label class="idc-label">A&ntilde;o</label>
+              <input class="idc-input" id="acYear" placeholder="2025" oninput="generateAcademicCite()">
+            </div>
+            <div class="col-md-4">
+              <label class="idc-label">Volumen</label>
+              <input class="idc-input" id="acVolume" placeholder="9" oninput="generateAcademicCite()">
+            </div>
+            <div class="col-md-4">
+              <label class="idc-label">N&uacute;mero</label>
+              <input class="idc-input" id="acIssue" placeholder="2" oninput="generateAcademicCite()">
+            </div>
+          </div>
+
+          <!-- Fila 5: Paginas + Mes + Dia -->
+          <div class="row g-2 mt-1">
+            <div class="col-md-4">
+              <label class="idc-label">P&aacute;ginas</label>
+              <input class="idc-input" id="acPages" placeholder="e2-e12" oninput="generateAcademicCite()">
+            </div>
+            <div class="col-md-4">
+              <label class="idc-label">Mes</label>
+              <input class="idc-input" id="acMonth" placeholder="marzo" oninput="generateAcademicCite()">
+            </div>
+            <div class="col-md-4">
+              <label class="idc-label">D&iacute;a</label>
+              <input class="idc-input" id="acDay" placeholder="15" oninput="generateAcademicCite()">
+            </div>
+          </div>
+
+          <!-- Formatos -->
+          <label class="idc-label mt-3">Formato de cita</label>
+          <div class="d-flex gap-2 flex-wrap">
             <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="APA" checked onchange="generateAcademicCite()"> APA 7</label>
             <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="MLA" onchange="generateAcademicCite()"> MLA</label>
             <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="Chicago" onchange="generateAcademicCite()"> Chicago</label>
@@ -1451,8 +1497,18 @@ OpenAI. (2026). <em style="color:var(--idc-gold)">ChatGPT (GPT-4o)</em> [Modelo 
             <label class="idc-label">Plantilla personalizada</label>
             <textarea class="idc-input idc-textarea" id="acCustomTpl" rows="2" placeholder="{APA_NAMES} ({YEAR}). {TITLE}. {JOURNAL}, {VOLUME}({ISSUE}), {PAGES}." oninput="generateAcademicCite()"></textarea>
           </div>
-          <div class="output-block" id="acOutput">Complete los campos para generar la cita acad&eacute;mica.</div>
-          <button class="btn-idc-blue btn-sm" onclick="copyAcademicCite()">Copiar</button>
+
+          <!-- Boton generar + Output -->
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn-idc-gold" onclick="generateAcademicCite()"><i class="bi bi-magic"></i> Generar cita acad&eacute;mica</button>
+            <button class="btn-idc-blue btn-sm" onclick="copyAcademicCite()"><i class="bi bi-clipboard"></i> Copiar</button>
+          </div>
+          <div class="idc-label mt-3" id="acOutputLabel" style="font-size:.85rem;color:var(--idc-blue);font-weight:600">Cita APA 7</div>
+          <div class="output-block" id="acOutput">Complete los campos y presione &ldquo;Generar cita acad&eacute;mica&rdquo; para obtener la referencia.</div>
+          <div class="d-flex gap-2 mt-2">
+            <button class="btn-idc-outline btn-sm" onclick="downloadPDF('academica')"><i class="bi bi-file-earmark-pdf"></i> Descargar PDF</button>
+            <button class="btn-idc-outline btn-sm" onclick="downloadCSV('academica')"><i class="bi bi-file-earmark-spreadsheet"></i> Descargar CSV</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1749,7 +1805,7 @@ function downloadPDF(type){
   }else if(type==='declaracion'){
     title='Declaracion-Uso-IA-IDC';
     content=document.getElementById('declOutput').innerText;
-    html='<html><head><title>'+title+'</title></head><body style="'+bS+'">'+hdr+'<pre style="'+pS+'">'+content+'</pre>'+sig+'<div style="'+fS+'">Jr. Chota 1121, Cercado de Lima - Perú, Lima 01, Per&uacute; &middot; www.idc.edu.pe &middot; '+fecha+'</div></body></html>';
+    html='<html><head><title>'+title+'</title></head><body style="'+bS+'">'+hdr+'<pre style="'+pS+'">'+content+'</pre>'+sig+'<div style="'+fS+'">Jr. Chota 1121,  Cercado, Lima 01, Per&uacute; &middot; www.idc.edu.pe &middot; '+fecha+'</div></body></html>';
   }else if(type==='doi'){
     title='Cita-DOI-APA7';
     content='REFERENCIA APA 7 DESDE DOI\n\n'+document.getElementById('autoRefOutput').innerText+'\n\nGenerado por Guia APA 7 IDC (2026)';
@@ -1764,8 +1820,8 @@ function downloadPDF(type){
     html='<html><head><title>'+title+'</title></head><body style="'+bS+'">'+hdr+'<pre style="'+pS+'">'+content+'</pre>'+ftr+'</body></html>';
   }else if(type==='atribuciones'){
     title='Atribuciones-Web-IDC';
-    content='DECLARACION OFICIAL DE USO DE INTELIGENCIA ARTIFICIAL\n\nPor medio de la presente, la Jefatura de la Unidad de Investigacion del Instituto de Educacion Superior Público "Diseno y Comunicación" (IDC) declara que el presente sitio web ha sido elaborado con asistencia de inteligencia artificial generativa.\n\nNivel AIAS: 4 (IA completa)\nHerramientas empleadas: ChatGPT (GPT-4o, OpenAI); DALL-E 3 (OpenAI); Copilot (GitHub)\nFecha: '+fecha+'\n\nTEXTOS GENERADOS POR IA:\n- Guia institucional para citacion APA 7 de contenido IA (ChatGPT GPT-4o)\n- Plantilla de declaracion de uso de IA con 6 componentes (ChatGPT GPT-4o)\n\nCODIGO GENERADO POR IA:\n- Aplicacion PWA con generador de citas APA 7 para IA (Copilot, ChatGPT)\n- Animaciones CSS, efectos interactivos, diseno visual (ChatGPT)\n\nVerificacion humana: Todo el contenido ha sido revisado, contrastado con fuentes originales y aprobado por la Jefatura de la Unidad de Investigacion del IDC.\n\nReferencia APA 7:\nOpenAI. (2026). ChatGPT (GPT-4o) [Modelo de lenguaje de gran tamano]. https://openai.com\n\nCita en texto: (OpenAI, 2026)';
-    html='<html><head><title>'+title+'</title></head><body style="'+bS+'">'+hdr+'<pre style="'+pS+'">'+content+'</pre>'+sig+'<div style="'+fS+'">Av. Javier Prado Este 1210, San Isidro, Lima 27, Peru &middot; www.idc.edu.pe &middot; '+fecha+'</div></body></html>';
+    content='DECLARACION OFICIAL DE USO DE INTELIGENCIA ARTIFICIAL\n\nPor medio de la presente, la Jefatura de la Unidad de Investigacion del Instituto de Educacion Superior Tecnologico Publico "Diseno y Comunicacion" (IDC) declara que el presente sitio web ha sido elaborado con asistencia de inteligencia artificial generativa.\n\nNivel AIAS: 4 (IA completa)\nHerramientas empleadas: ChatGPT (GPT-4o, OpenAI); DALL-E 3 (OpenAI); Copilot (GitHub)\nFecha: '+fecha+'\n\nTEXTOS GENERADOS POR IA:\n- Guia institucional para citacion APA 7 de contenido IA (ChatGPT GPT-4o)\n- Plantilla de declaracion de uso de IA con 6 componentes (ChatGPT GPT-4o)\n\nCODIGO GENERADO POR IA:\n- Aplicacion PWA con generador de citas APA 7 para IA (Copilot, ChatGPT)\n- Animaciones CSS, efectos interactivos, diseno visual (ChatGPT)\n\nVerificacion humana: Todo el contenido ha sido revisado, contrastado con fuentes originales y aprobado por la Jefatura de la Unidad de Investigacion del IDC.\n\nReferencia APA 7:\nOpenAI. (2026). ChatGPT (GPT-4o) [Modelo de lenguaje de gran tamano]. https://openai.com\n\nCita en texto: (OpenAI, 2026)';
+    html='<html><head><title>'+title+'</title></head><body style="'+bS+'">'+hdr+'<pre style="'+pS+'">'+content+'</pre>'+sig+'<div style="'+fS+'">Jr. Chota 1121, Cercado, Lima 01, Peru &middot; www.idc.edu.pe &middot; '+fecha+'</div></body></html>';
   }else if(type==='academica'){
     title='Cita-Academica-IDC';
     var cite=document.getElementById('acOutput').innerText;
