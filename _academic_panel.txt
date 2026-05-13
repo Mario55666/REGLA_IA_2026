@@ -1,0 +1,66 @@
+
+<!-- TAB 7: CITA ACADEMICA -->
+<div id="panel-academica" class="tab-panel">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="idc-card">
+        <div class="card-header-idc">
+          <h3><i class="bi bi-book"></i> Generador de Citas Acad&eacute;micas</h3>
+          <p>APA 7 / MLA / Chicago / Harvard / Vancouver / Turabian / IEEE / Personalizado</p>
+        </div>
+        <div class="card-body-idc">
+          <div class="row g-2 mb-3"><div class="col-12"><label class="idc-label">T&iacute;tulo del art&iacute;culo</label><input class="idc-input" id="acTitle" placeholder="Escriba el t&iacute;tulo completo" oninput="generateAcademicCite()"></div></div>
+          <div class="row g-2 mb-3">
+            <div class="col-md-6"><label class="idc-label">Autores (Apellido, Nombre; ...)</label><input class="idc-input" id="acAuthors" placeholder="Garc&iacute;a, Juan; L&oacute;pez, Mar&iacute;a" oninput="generateAcademicCite()"></div>
+            <div class="col-md-6"><label class="idc-label">Revista / Journal</label><input class="idc-input" id="acJournal" placeholder="Journal of Design Research" oninput="generateAcademicCite()"></div>
+          </div>
+          <div class="row g-2 mb-3">
+            <div class="col-md-3 col-6"><label class="idc-label">Volumen</label><input class="idc-input" id="acVolume" placeholder="12" oninput="generateAcademicCite()"></div>
+            <div class="col-md-3 col-6"><label class="idc-label">N&uacute;mero</label><input class="idc-input" id="acIssue" placeholder="3" oninput="generateAcademicCite()"></div>
+            <div class="col-md-3 col-6"><label class="idc-label">P&aacute;ginas</label><input class="idc-input" id="acPages" placeholder="45-67" oninput="generateAcademicCite()"></div>
+            <div class="col-md-3 col-6"><label class="idc-label">A&ntilde;o</label><input class="idc-input" id="acYear" placeholder="2025" oninput="generateAcademicCite()"></div>
+          </div>
+          <div class="row g-2 mb-3">
+            <div class="col-md-6"><label class="idc-label">DOI</label><input class="idc-input" id="acDoi" placeholder="10.1016/j.design.2025.03.004" oninput="generateAcademicCite()"></div>
+            <div class="col-md-3 col-6"><label class="idc-label">Mes (opcional)</label><input class="idc-input" id="acMonth" placeholder="Marzo" oninput="generateAcademicCite()"></div>
+            <div class="col-md-3 col-6"><label class="idc-label">D&iacute;a (opcional)</label><input class="idc-input" id="acDay" placeholder="15" oninput="generateAcademicCite()"></div>
+          </div>
+          <div class="d-flex align-items-center gap-3 flex-wrap mb-3 p-2" style="background:rgba(0,114,185,.04);border-radius:30px">
+            <span style="font-size:.75rem;color:var(--idc-md)">Formato:</span>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="APA" checked onchange="generateAcademicCite()"> APA 7</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="MLA" onchange="generateAcademicCite()"> MLA</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="Chicago" onchange="generateAcademicCite()"> Chicago</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="Harvard" onchange="generateAcademicCite()"> Harvard</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="Vancouver" onchange="generateAcademicCite()"> Vancouver</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="Turabian" onchange="generateAcademicCite()"> Turabian</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="IEEE" onchange="generateAcademicCite()"> IEEE</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="Personalizado" onchange="toggleCustomFormat();generateAcademicCite()"> Personalizado</label>
+          </div>
+          <div id="customFormatBox" style="display:none" class="mb-3">
+            <label class="idc-label">Plantilla personalizada <small style="color:var(--idc-md)">Usa: {APA_NAMES}, {TITLE}, {JOURNAL}, {YEAR}, {VOLUME}, {ISSUE}, {PAGES}, {DOI}, {MONTH}, {DAY}, {NOW}</small></label>
+            <textarea class="idc-input idc-textarea" id="acCustomTpl" rows="2" placeholder="{APA_NAMES} ({YEAR}). {TITLE}. {JOURNAL}, {VOLUME}({ISSUE}), {PAGES}." oninput="generateAcademicCite()"></textarea>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span id="acOutputLabel" style="font-size:.85rem;font-weight:600;color:var(--idc-blue)">Cita APA 7</span>
+            <button class="btn-idc-blue btn-sm" onclick="copyAcademicCite()"><i class="bi bi-clipboard"></i> Copiar</button>
+          </div>
+          <div class="output-block" id="acOutput">Complete los campos para generar la cita acad&eacute;mica.</div>
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn-idc-outline btn-sm" onclick="downloadPDF('academica')">Descargar PDF</button>
+            <button class="btn-idc-outline btn-sm" onclick="downloadCSV('academica')">Descargar CSV</button>
+          </div>
+          <div class="alert-idc-orange mt-3"><strong style="color:var(--idc-gold)">Tip:</strong> Los autores se separan con punto y coma (<code>;</code>). IEEE usa iniciales antes del apellido; APA usa &amp; antes del &uacute;ltimo autor.</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="holo-card">
+        <div class="holo-content text-center">
+          <i class="bi bi-book" style="font-size:2.5rem;color:var(--idc-blue)"></i>
+          <h5 class="mt-2" style="color:var(--idc-blue);font-weight:600">7 formatos acad&eacute;micos</h5>
+          <p style="font-size:.8rem;color:var(--idc-md);margin:0">Genera citas en APA 7, MLA, Chicago, Harvard, Vancouver, Turabian e IEEE. Incluye plantilla personalizada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

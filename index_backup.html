@@ -1,0 +1,1827 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<meta name="theme-color" content="#0072b9">
+<meta name="description" content="Guia APA 7 para el uso de Inteligencia Artificial Generativa - IDC">
+<meta name="author" content="Jefatura de la Unidad de Investigacion - IDC">
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiR3VpYSBBUEEgNyBJQSIsInNob3J0X25hbWUiOiJBUEEgNyBJQSIsInN0YXJ0X3VybCI6Ii4iLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZmZmZmZmIiwidGhlbWVfY29sb3IiOiIjMDA3MmI5IiwibGFuZyI6ImVzLUVTIn0=">
+<title>Guia APA 7.0 &middot; Inteligencia Artificial Generativa &middot; IDC</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   IDC CORPORATE COLORS
+   Gold: #f3a100  Blue: #0072b9
+   DarkGray: #555553  MediumGray: #868686
+   White: #ffffff
+   ═══════════════════════════════════════════ */
+:root{
+  --idc-gold:#f3a100;
+  --idc-blue:#0072b9;
+  --idc-dk:#555553;
+  --idc-md:#868686;
+  --idc-w:#ffffff;
+  --font-main:'Segoe UI',system-ui,-apple-system,sans-serif;
+  --font-mono:'Fira Code','Consolas',monospace;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:#fff;
+  color:#333;
+  font-family:var(--font-main);
+  font-weight:300;
+  line-height:1.6;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* ═════ NAVBAR ═════ */
+.navbar-idc{
+  background:linear-gradient(135deg,var(--idc-blue),#005a94);
+  box-shadow:0 2px 20px rgba(0,114,185,.2);
+  padding:.6rem 1rem;
+}
+
+.logo-idc{
+  display:flex;align-items:center;gap:.8rem;
+}
+
+.logo-idc svg{
+  height:44px;width:auto;
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.2));
+}
+
+.logo-text{
+  color:#fff;
+  font-size:1.1rem;
+  font-weight:600;
+  line-height:1.2;
+}
+
+.logo-text small{
+  display:block;
+  font-size:.65rem;
+  font-weight:400;
+  opacity:.85;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+}
+
+.nav-pills .nav-link{
+  color:rgba(255,255,255,.75);
+  font-size:.82rem;
+  font-weight:500;
+  padding:.4rem .9rem;
+  border-radius:20px;
+  transition:all .3s ease;
+  border:1px solid transparent;
+}
+
+.nav-pills .nav-link:hover,
+.nav-pills .nav-link.active{
+  background:rgba(243,161,0,.2);
+  color:#fff;
+  border-color:rgba(243,161,0,.4);
+}
+
+/* ═════ HERO ═════ */
+.hero-section{
+  background:linear-gradient(135deg,var(--idc-blue) 0%,#0068a8 50%,var(--idc-gold) 150%);
+  color:#fff;
+  padding:3rem 1rem 3rem;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-section::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Ctext x='10' y='40' font-size='28' fill='rgba(255,255,255,.04)' font-family='serif'%3E%26Sigma;%3C/text%3E%3Ctext x='60' y='80' font-size='22' fill='rgba(255,255,255,.03)' font-family='serif'%3E%26Delta;%3C/text%3E%3C/svg%3E");
+  animation:heroFloat 20s linear infinite;
+}
+
+@keyframes heroFloat{
+  0%{background-position:0 0}
+  100%{background-position:100px 100px}
+}
+
+.hero-content{position:relative;z-index:1}
+
+.hero-badge{
+  display:inline-block;
+  background:rgba(243,161,0,.2);
+  border:1px solid rgba(243,161,0,.4);
+  color:#f3a100;
+  padding:.3rem 1rem;
+  border-radius:30px;
+  font-size:.7rem;
+  font-weight:500;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  margin-bottom:1rem;
+}
+
+.hero-title{
+  font-size:clamp(1.8rem,4vw,3rem);
+  font-weight:700;
+  margin-bottom:.5rem;
+  text-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.hero-subtitle{
+  font-size:clamp(1rem,2vw,1.3rem);
+  opacity:.9;
+  margin-bottom:1.5rem;
+  font-weight:300;
+}
+
+.hero-divider{
+  width:80px;
+  height:3px;
+  background:linear-gradient(90deg,var(--idc-gold),transparent);
+  margin:1rem 0;
+  border-radius:2px;
+}
+
+/* ═════ TABS ═════ */
+.tab-bar{
+  background:#fff;
+  border-bottom:1px solid rgba(0,0,0,.08);
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 2px 10px rgba(0,0,0,.04);
+}
+
+.tab-btn{
+  background:none;
+  border:none;
+  padding:.85rem 1.2rem;
+  font-size:.82rem;
+  font-weight:500;
+  color:var(--idc-md);
+  cursor:pointer;
+  transition:all .25s ease;
+  border-bottom:3px solid transparent;
+  white-space:nowrap;
+  position:relative;
+}
+
+.tab-btn:hover{
+  color:var(--idc-blue);
+  background:rgba(0,114,185,.04);
+}
+
+.tab-btn.active{
+  color:var(--idc-blue);
+  border-bottom-color:var(--idc-gold);
+  font-weight:600;
+}
+
+.tab-btn i{
+  margin-right:.3rem;
+  font-size:1rem;
+}
+
+.tab-panel{display:none;animation:fadeIn .3s ease}
+.tab-panel.active{display:block}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ═════ CARDS ═════ */
+.idc-card{
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:16px;
+  box-shadow:0 4px 20px rgba(0,0,0,.04);
+  transition:all .3s ease;
+  overflow:hidden;
+  margin-bottom:1.2rem;
+}
+
+.idc-card:hover{
+  box-shadow:0 8px 30px rgba(0,114,185,.1);
+  border-color:rgba(0,114,185,.15);
+  transform:translateY(-2px);
+}
+
+.card-header-idc{
+  background:linear-gradient(135deg,#fef9f0,#fff);
+  border-bottom:2px solid var(--idc-gold);
+  padding:1.2rem 1.5rem;
+}
+
+.card-header-idc h3{
+  color:var(--idc-blue);
+  font-size:1.15rem;
+  font-weight:600;
+  margin:0;
+}
+
+.card-header-idc p{
+  color:var(--idc-md);
+  font-size:.8rem;
+  margin:.3rem 0 0;
+}
+
+.card-body-idc{padding:1.5rem}
+
+/* ═════ 1. HOLOGRAPHIC CARD EFFECT ═════ */
+.holo-card{
+  position:relative;
+  background:linear-gradient(135deg,#f8f9ff,#fff8f0);
+  border-radius:16px;
+  padding:1.5rem;
+  overflow:hidden;
+  transition:transform .4s ease,box-shadow .4s ease;
+}
+
+.holo-card::before{
+  content:'';
+  position:absolute;
+  top:-50%;left:-50%;width:200%;height:200%;
+  background:conic-gradient(from 0deg at 50% 50%,
+    transparent 0deg,
+    rgba(243,161,0,.15) 60deg,
+    transparent 120deg,
+    rgba(0,114,185,.15) 180deg,
+    transparent 240deg,
+    rgba(243,161,0,.15) 300deg,
+    transparent 360deg);
+  opacity:0;
+  transition:opacity .4s ease;
+  animation:holoSpin 3s linear infinite;
+  pointer-events:none;
+}
+
+.holo-card:hover{
+  transform:scale(1.03);
+  box-shadow:0 0 30px rgba(0,114,185,.15),0 8px 25px rgba(243,161,0,.1);
+}
+
+.holo-card:hover::before{opacity:1}
+
+@keyframes holoSpin{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+.holo-content{position:relative;z-index:1}
+
+/* ═════ 2. LIQUID MORPH BUTTON ═════ */
+.liquid-btn{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:.7rem 1.8rem;
+  background:var(--idc-blue);
+  color:#fff;
+  border:none;
+  border-radius:30px;
+  font-size:.9rem;
+  font-weight:500;
+  cursor:pointer;
+  overflow:hidden;
+  transition:all .4s cubic-bezier(.22,1,.36,1);
+  box-shadow:0 4px 15px rgba(0,114,185,.3);
+}
+
+.liquid-btn::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:conic-gradient(from 0deg,#00d4ff,#0072b9,#00d4ff);
+  opacity:0;
+  transition:opacity .4s ease;
+  border-radius:inherit;
+}
+
+.liquid-btn:hover{
+  border-radius:20px;
+  transform:rotate(-2deg) scale(1.02);
+  box-shadow:0 8px 25px rgba(0,114,185,.4);
+}
+
+.liquid-btn:hover::before{opacity:.3}
+
+.liquid-btn span{position:relative;z-index:1}
+
+/* ═════ 3. EXPLOSIVE TEXT EFFECT ═════ */
+.explode-text{
+  position:relative;
+  display:inline-block;
+  cursor:pointer;
+  font-weight:700;
+  transition:all .3s ease;
+}
+
+.explode-text::before,
+.explode-text::after{
+  content:'';
+  position:absolute;
+  inset:-4px;
+  border-radius:8px;
+  opacity:0;
+  transition:all .4s ease;
+}
+
+.explode-text::before{
+  background:radial-gradient(circle,rgba(243,161,0,.2),transparent 70%);
+}
+
+.explode-text::after{
+  border:2px solid var(--idc-gold);
+  transform:scale(.8);
+}
+
+.explode-text:hover{
+  color:var(--idc-gold);
+  transform:scale(1.08);
+}
+
+.explode-text:hover::before{opacity:1;transform:scale(1.2)}
+.explode-text:hover::after{opacity:1;transform:scale(1)}
+
+/* ═════ 4. TEXT UNDERLINE EFFECT ═════ */
+.underline-effect{
+  position:relative;
+  display:inline-block;
+  text-decoration:none;
+  color:var(--idc-blue);
+  font-weight:500;
+}
+
+.underline-effect::before,
+.underline-effect::after{
+  content:'';
+  position:absolute;
+  left:0;width:0;height:2px;
+  background:linear-gradient(90deg,var(--idc-gold),var(--idc-blue));
+  transition:width .4s cubic-bezier(.22,1,.36,1);
+}
+
+.underline-effect::before{top:-2px}
+.underline-effect::after{bottom:-2px}
+
+.underline-effect:hover::before,
+.underline-effect:hover::after{width:100%}
+
+/* ═════ 5. DROPDOWN MENU ═════ */
+.idc-dropdown{position:relative;display:inline-block}
+
+.idc-dropdown-content{
+  position:absolute;
+  top:100%;left:0;
+  min-width:220px;
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 10px 40px rgba(0,0,0,.12);
+  opacity:0;
+  transform:translateY(-10px);
+  transition:all .3s ease;
+  pointer-events:none;
+  z-index:1000;
+  overflow:hidden;
+  border:1px solid rgba(0,0,0,.06);
+}
+
+.idc-dropdown:hover .idc-dropdown-content{
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+
+.idc-dropdown-item{
+  display:block;
+  padding:.7rem 1.2rem;
+  color:var(--idc-dk);
+  text-decoration:none;
+  font-size:.85rem;
+  transition:all .2s ease;
+  border-left:3px solid transparent;
+}
+
+.idc-dropdown-item:hover{
+  background:rgba(0,114,185,.04);
+  color:var(--idc-blue);
+  border-left-color:var(--idc-gold);
+  padding-left:1.4rem;
+}
+
+/* ═════ 6. FLIP CARD ═════ */
+.flip-card{
+  perspective:1000px;
+  height:220px;
+}
+
+.flip-card-inner{
+  position:relative;
+  width:100%;height:100%;
+  transition:transform .7s cubic-bezier(.22,1,.36,1);
+  transform-style:preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner{transform:rotateY(180deg)}
+
+.flip-card-front,.flip-card-back{
+  position:absolute;
+  inset:0;
+  backface-visibility:hidden;
+  border-radius:14px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:1.2rem;
+  text-align:center;
+}
+
+.flip-card-front{
+  background:linear-gradient(135deg,rgba(0,114,185,.08),rgba(243,161,0,.08));
+  border:1px solid rgba(0,114,185,.12);
+}
+
+.flip-card-back{
+  background:linear-gradient(135deg,var(--idc-blue),#005a94);
+  color:#fff;
+  transform:rotateY(180deg);
+}
+
+/* ═════ 7. 4-CORNER IMAGE ═════ */
+.corner-img-container{
+  position:relative;
+  width:100%;
+  aspect-ratio:4/3;
+  overflow:hidden;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+.corner-img-container img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:all .5s ease;
+}
+
+.corner-img-container .corner{
+  position:absolute;
+  width:50%;height:50%;
+  transition:all .5s cubic-bezier(.22,1,.36,1);
+  overflow:hidden;
+}
+
+.corner-img-container .corner img{
+  position:absolute;
+  width:200%;height:200%;
+}
+
+.corner-tl{top:0;left:0}
+.corner-tl img{top:0;left:0}
+.corner-tr{top:0;right:0}
+.corner-tr img{top:0;right:0}
+.corner-bl{bottom:0;left:0}
+.corner-bl img{bottom:0;left:0}
+.corner-br{bottom:0;right:0}
+.corner-br img{bottom:0;right:0}
+
+.corner-img-container:hover .corner-tl{transform:translate(-8px,-8px)}
+.corner-img-container:hover .corner-tr{transform:translate(8px,-8px)}
+.corner-img-container:hover .corner-bl{transform:translate(-8px,8px)}
+.corner-img-container:hover .corner-br{transform:translate(8px,8px)}
+
+/* ═════ 8. 3D ROTATING CUBE ═════ */
+.cube-scene{
+  perspective:800px;
+  width:120px;height:120px;
+  margin:2rem auto;
+}
+
+.cube{
+  width:100%;height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  animation:rotateCube 12s linear infinite;
+}
+
+.cube:hover{animation-duration:4s}
+
+@keyframes rotateCube{
+  from{transform:rotateX(0deg) rotateY(0deg)}
+  to{transform:rotateX(360deg) rotateY(360deg)}
+}
+
+.cube-face{
+  position:absolute;
+  width:120px;height:120px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:2rem;
+  border:2px solid rgba(255,255,255,.3);
+  border-radius:8px;
+}
+
+.face-front{transform:translateZ(60px);background:rgba(0,114,185,.7)}
+.face-back{transform:rotateY(180deg) translateZ(60px);background:rgba(243,161,0,.7)}
+.face-right{transform:rotateY(90deg) translateZ(60px);background:rgba(0,114,185,.5)}
+.face-left{transform:rotateY(-90deg) translateZ(60px);background:rgba(243,161,0,.5)}
+.face-top{transform:rotateX(90deg) translateZ(60px);background:rgba(0,114,185,.6)}
+.face-bottom{transform:rotateX(-90deg) translateZ(60px);background:rgba(243,161,0,.6)}
+
+/* ═════ 9. CUSTOM CURSOR ═════ */
+.custom-cursor{
+  cursor:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='8' fill='none' stroke='%23f3a100' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%230072b9'/%3E%3C/svg%3E") 12 12,auto;
+}
+
+/* ═════ 10. CHAMELEON SVG PATTERN ═════ */
+.chameleon-card{
+  position:relative;
+  border-radius:14px;
+  padding:1.5rem;
+  overflow:hidden;
+  transition:all .5s ease;
+  background:#fafafa;
+  border:1px solid rgba(0,0,0,.06);
+}
+
+.chameleon-card:hover{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='2' fill='%23f3a100' opacity='.15'/%3E%3Ccircle cx='0' cy='0' r='2' fill='%230072b9' opacity='.15'/%3E%3Ccircle cx='40' cy='0' r='2' fill='%230072b9' opacity='.15'/%3E%3Ccircle cx='0' cy='40' r='2' fill='%230072b9' opacity='.15'/%3E%3Ccircle cx='40' cy='40' r='2' fill='%23f3a100' opacity='.15'/%3E%3C/svg%3E");
+  background-size:40px 40px;
+  animation:chamMove 2s linear infinite;
+}
+
+@keyframes chamMove{
+  0%{background-position:0 0}
+  100%{background-position:40px 40px}
+}
+
+/* ═════ PROFILE CARD SLIDE ═════ */
+.profile-slide-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:14px;
+  height:200px;
+  background:linear-gradient(135deg,var(--idc-blue),#005a94);
+  color:#fff;
+}
+
+.profile-slide-front,.profile-slide-back{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  transition:transform .5s cubic-bezier(.22,1,.36,1);
+}
+
+.profile-slide-back{
+  transform:translateY(100%);
+  background:rgba(243,161,0,.9);
+}
+
+.profile-slide-card:hover .profile-slide-front{transform:translateY(-100%)}
+.profile-slide-card:hover .profile-slide-back{transform:translateY(0)}
+
+/* ═════ GLASSMORPHISM CARD ═════ */
+.glass-card{
+  background:rgba(255,255,255,.7);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.3);
+  border-radius:16px;
+  padding:1.5rem;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,.06);
+}
+
+.glass-card::before{
+  content:'';
+  position:absolute;
+  top:-50%;left:-50%;
+  width:200%;height:200%;
+  background:conic-gradient(from 0deg at 50% 50%,transparent,rgba(243,161,0,.1),transparent,rgba(0,114,185,.1),transparent);
+  animation:glassGlow 6s linear infinite;
+  opacity:0;
+  transition:opacity .4s ease;
+}
+
+.glass-card:hover::before{opacity:1}
+.glass-card:hover{box-shadow:0 8px 30px rgba(0,114,185,.15)}
+
+@keyframes glassGlow{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+.glass-content{position:relative;z-index:1}
+
+/* ═════ TOURIST CARD 3D ═════ */
+.tourist-card{
+  transition:all .5s cubic-bezier(.22,1,.36,1);
+  transform-style:preserve-3d;
+  border-radius:14px;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid rgba(0,0,0,.06);
+}
+
+.tourist-card:hover{
+  transform:rotateX(8deg) rotateZ(-2deg) translateY(-8px);
+  box-shadow:0 20px 40px rgba(0,114,185,.15);
+}
+
+/* ═════ SOCIAL ICON HOVER ═════ */
+.social-icon-btn{
+  width:44px;height:44px;
+  border-radius:50%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--idc-md);
+  border:1px solid rgba(0,0,0,.1);
+  transition:all .4s ease;
+  position:relative;
+  overflow:hidden;
+  text-decoration:none;
+  font-size:1.2rem;
+}
+
+.social-icon-btn::before{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:0;
+  background:linear-gradient(180deg,var(--idc-gold),var(--idc-blue));
+  transition:height .4s ease;
+  z-index:0;
+}
+
+.social-icon-btn:hover{
+  color:#fff;
+  border-color:transparent;
+  transform:translateY(-3px);
+}
+
+.social-icon-btn:hover::before{height:100%}
+
+.social-icon-btn i{position:relative;z-index:1}
+
+/* ═════ FORM ELEMENTS ═════ */
+.idc-input{
+  width:100%;
+  padding:.7rem 1rem;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,.12);
+  background:#fafafa;
+  font-size:.88rem;
+  font-family:var(--font-main);
+  transition:all .25s ease;
+  color:#333;
+}
+
+.idc-input:focus{
+  outline:none;
+  border-color:var(--idc-blue);
+  box-shadow:0 0 0 3px rgba(0,114,185,.1);
+  background:#fff;
+}
+
+.idc-label{
+  display:block;
+  font-size:.78rem;
+  font-weight:500;
+  color:var(--idc-md);
+  margin-bottom:.35rem;
+  letter-spacing:.3px;
+}
+
+.idc-textarea{
+  resize:vertical;
+  min-height:80px;
+}
+
+/* Output blocks */
+.output-block{
+  background:#f0f4f8;
+  border-left:4px solid var(--idc-gold);
+  padding:1rem 1.2rem;
+  border-radius:0 12px 12px 0;
+  font-family:var(--font-mono);
+  font-size:.82rem;
+  line-height:1.6;
+  color:#333;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+/* ═════ TABLE AIAS ═════ */
+.aias-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.82rem;
+}
+
+.aias-table th{
+  background:var(--idc-blue);
+  color:#fff;
+  padding:.7rem .8rem;
+  text-align:left;
+  font-weight:500;
+  font-size:.75rem;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+
+.aias-table td{
+  padding:.7rem .8rem;
+  border-bottom:1px solid rgba(0,0,0,.06);
+  color:#333;
+}
+
+.aias-table tr:nth-child(even){background:rgba(0,114,185,.02)}
+
+/* ═════ BUTTONS ═════ */
+.btn-idc-gold{
+  background:var(--idc-gold);
+  color:#fff;
+  border:none;
+  padding:.5rem 1.2rem;
+  border-radius:25px;
+  font-size:.82rem;
+  font-weight:500;
+  transition:all .25s ease;
+}
+
+.btn-idc-gold:hover{
+  background:#d99100;
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(243,161,0,.3);
+}
+
+.btn-idc-blue{
+  background:var(--idc-blue);
+  color:#fff;
+  border:none;
+  padding:.5rem 1.2rem;
+  border-radius:25px;
+  font-size:.82rem;
+  font-weight:500;
+  transition:all .25s ease;
+}
+
+.btn-idc-blue:hover{
+  background:#005a94;
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(0,114,185,.3);
+}
+
+.btn-idc-outline{
+  background:transparent;
+  color:var(--idc-blue);
+  border:1px solid var(--idc-blue);
+  padding:.5rem 1.2rem;
+  border-radius:25px;
+  font-size:.82rem;
+  font-weight:500;
+  transition:all .25s ease;
+}
+
+.btn-idc-outline:hover{
+  background:var(--idc-blue);
+  color:#fff;
+}
+
+/* ═════ ALERTS ═════ */
+.alert-idc-orange{
+  background:#fff8ee;
+  border-left:4px solid var(--idc-gold);
+  padding:1rem 1.2rem;
+  border-radius:0 12px 12px 0;
+  font-size:.82rem;
+  color:#333;
+  line-height:1.6;
+}
+
+.alert-idc-blue{
+  background:#eef6fc;
+  border-left:4px solid var(--idc-blue);
+  padding:1rem 1.2rem;
+  border-radius:0 12px 12px 0;
+  font-size:.82rem;
+  color:#333;
+  line-height:1.6;
+}
+
+/* ═════ FOOTER ═════ */
+.footer-idc{
+  background:linear-gradient(135deg,var(--idc-blue),#005a94);
+  color:#fff;
+  padding:2rem 1rem;
+  text-align:center;
+}
+
+.footer-idc p{
+  font-size:.78rem;
+  opacity:.85;
+  margin:0;
+  line-height:1.6;
+}
+
+.footer-idc .footer-brand{
+  font-size:.9rem;
+  font-weight:600;
+  opacity:1;
+  margin-bottom:.3rem;
+}
+
+.footer-divider{
+  width:60px;
+  height:2px;
+  background:var(--idc-gold);
+  margin:.8rem auto;
+  border-radius:1px;
+}
+
+/* ═════ SCROLLBAR ═════ */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#f0f0f0}
+::-webkit-scrollbar-thumb{background:var(--idc-md);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--idc-gold)}
+
+/* ═════ PRINT ═════ */
+@media print{
+  .navbar-idc,.tab-bar,.btn-group-print{display:none!important}
+  .tab-panel{display:block!important}
+  body{background:#fff;color:#000}
+}
+
+/* ═════ RESPONSIVE ═════ */
+@media(max-width:768px){
+  .hero-title{font-size:1.5rem}
+  .tab-btn{padding:.7rem .6rem;font-size:.75rem}
+  .cube-scene{transform:scale(.7)}
+  .flip-card{height:180px}
+}
+</style>
+</head>
+<body class="custom-cursor">
+
+<!-- ═══════════════════════════════════════════
+     SERVICE WORKER
+     ═══════════════════════════════════════════ -->
+<script>
+
+function toggleCustomFormat(){document.getElementById('customFormatBox').style.display=document.querySelector('input[name="acFormat"]:checked').value==='Personalizado'?'block':'none';}
+function parseAuthors(input){if(!input||!input.trim())return[];return input.split(/\s*;\s*/).map(function(a){var p=a.split(/\s*,\s*/);return{surname:(p[0]||'').trim(),given:(p[1]||'').trim(),initials:(p[1]||'').trim().split(/\s+/).map(function(w){return w.charAt(0).toUpperCase()+'.';}).join('')};}).filter(function(a){return a.surname;});}
+function formatNames(authors,fmt){if(!authors.length)return'[Autor]';if(fmt==='MLA'){var f=authors[0],r=f.surname+', '+f.given;if(authors.length>1)r+=authors.length===2?', y '+authors[1].given:' et al.';return r;}if(fmt==='APA'||fmt==='Harvard')return authors.map(function(a,i){var s=a.surname+', '+a.initials;if(authors.length>1&&i===authors.length-1)s=' & '+s;else if(i>0)s=', '+s;return s;}).join('');if(fmt==='Vancouver')return authors.map(function(a,i){var s=a.surname+' '+a.initials.replace(/\./g,'');if(i<authors.length-1)s+=',';return s;}).join(' ');if(fmt==='Turabian'||fmt==='Chicago')return authors.map(function(a,i){var s=a.surname+', '+a.given;if(authors.length>1&&i===authors.length-1)s=', y '+s;else if(i>0&&i<authors.length-1)s+=',';return s;}).join('');if(fmt==='IEEE')return authors.map(function(a,i){var s=a.initials+' '+a.surname;if(authors.length>1&&i===authors.length-1)s=', y '+s;else if(i>0)s+=',';return s;}).join('');return authors.map(function(a){return a.surname+', '+a.initials;}).join('; ');}
+function generateAcademicCite(){var title=document.getElementById('acTitle').value.trim()||'[Titulo]',authors=parseAuthors(document.getElementById('acAuthors').value),journal=document.getElementById('acJournal').value.trim()||'[Revista]',volume=document.getElementById('acVolume').value.trim(),issue=document.getElementById('acIssue').value.trim(),pages=document.getElementById('acPages').value.trim(),year=document.getElementById('acYear').value.trim()||'[Ano]',month=document.getElementById('acMonth').value.trim(),day=document.getElementById('acDay').value.trim(),doi=document.getElementById('acDoi').value.trim(),fmt=document.querySelector('input[name="acFormat"]:checked').value,now=new Date(),nowAccess=now.toLocaleDateString('es-es',{month:'long',day:'numeric',year:'numeric'}),apaNames=formatNames(authors,'APA'),mlaNames=formatNames(authors,'MLA'),turabianNames=formatNames(authors,'Turabian'),harvardNames=formatNames(authors,'Harvard'),vancouverNames=formatNames(authors,'Vancouver'),ieeeNames=formatNames(authors,'IEEE'),labelMap={APA:'APA 7',MLA:'MLA',Chicago:'Chicago',Harvard:'Harvard',Vancouver:'Vancouver',Turabian:'Turabian',IEEE:'IEEE',Personalizado:'Personalizado'};document.getElementById('acOutputLabel').innerHTML='Cita '+labelMap[fmt];var cite='';if(fmt==='APA'){cite=apaNames+' ('+year+'). '+title+'. <em>'+journal+'</em>'+(volume?', '+volume:'')+(issue?'('+issue+')':'')+(pages?', '+pages:'')+'.'+(doi?' https://doi.org/'+doi:'');}else if(fmt==='MLA'){cite=mlaNames+'. "'+title+'." <em>'+journal+'</em>, vol. '+(volume||'X')+', no. '+(issue||'X')+', '+year+(pages?', pp. '+pages:'')+'.'+(doi?' doi:'+doi:'')+'.';}else if(fmt==='Chicago'){cite=turabianNames+'. '+year+'. "'+title+'." <em>'+journal+'</em> '+(volume||'')+(issue?' ('+issue+'):':': ')+(pages||'')+'.'+(doi?' https://doi.org/'+doi:'');}else if(fmt==='Harvard'){cite=harvardNames+' ('+year+') \''+title+'\', <em>'+journal+'</em>, '+volume+'('+issue+'), pp. '+pages+'. doi:'+doi+'.';}else if(fmt==='Vancouver'){cite=vancouverNames+'. '+title+'. '+journal+'. '+year+';'+(volume||'')+(issue?'('+issue+'):':':')+(pages||'')+'.'+(doi?' doi:'+doi:'');}else if(fmt==='Turabian'){cite=turabianNames+'. "'+title+'." <em>'+journal+'</em> '+volume+', no. '+issue+' ('+year+'): '+pages+'.'+(doi?' doi:'+doi:'');}else if(fmt==='IEEE'){cite=ieeeNames+', "'+title+'," <em>'+journal+'</em>, vol. '+volume+', no. '+issue+(pages?', p. '+pages:'')+(year?', '+year:'')+(month?', '+month:'')+(day?' '+day:'')+'. [Abstract].'+(doi?' Available: https://doi.org/'+doi:'')+' [Accessed '+nowAccess+'].';}else if(fmt==='Personalizado'){var tpl=document.getElementById('acCustomTpl').value.trim();if(!tpl)tpl='{APA_NAMES} ({YEAR}). {TITLE}. {JOURNAL}, {VOLUME}({ISSUE}), {PAGES}.';cite=tpl.replace(/{APA_NAMES}/g,apaNames).replace(/{MLA_NAMES}/g,mlaNames).replace(/{TURABIAN_NAMES}/g,turabianNames).replace(/{HARVARD_NAMES}/g,harvardNames).replace(/{VANCOUVER_NAMES}/g,vancouverNames).replace(/{IEEE_NAMES}/g,ieeeNames).replace(/{TITLE}/g,title).replace(/{JOURNAL}/g,journal).replace(/{YEAR}/g,year).replace(/{MONTH}/g,month).replace(/{DAY}/g,day).replace(/{VOLUME}/g,volume).replace(/{ISSUE}/g,issue).replace(/{PAGES}/g,pages).replace(/{DOI}/g,doi).replace(/{NOW}/g,nowAccess);}document.getElementById('acOutput').innerHTML=cite;}
+function copyAcademicCite(){copyToClipboard(document.getElementById('acOutput').innerText,document.getElementById('acOutput').innerHTML);}
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('data:text/javascript,'+encodeURIComponent(`
+    self.addEventListener('install',e=>self.skipWaiting());
+    self.addEventListener('activate',e=>e.waitUntil(clients.claim()));
+    self.addEventListener('fetch',e=>e.respondWith(fetch(e.request).catch(()=>new Response('Sin conexion',{status:503}))));
+  `)).catch(()=>{});
+}
+</script>
+
+<!-- ═══════════════════════════════════════════
+     NAVBAR
+     ═══════════════════════════════════════════ -->
+<nav class="navbar navbar-idc sticky-top">
+  <div class="container-fluid d-flex align-items-center justify-content-between">
+    <div class="logo-idc">
+      <svg viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="28" cy="28" r="16" fill="#f3a100"/>
+        <text x="48" y="45" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#0072b9" letter-spacing="-1">idc</text>
+        <text x="48" y="60" font-family="Arial,sans-serif" font-size="11" fill="#555553" font-weight="400">dise&ntilde;o &amp; comunicaci&oacute;n</text>
+        <text x="48" y="72" font-family="Arial,sans-serif" font-size="8" fill="#868686" font-weight="300">Instituto de Educaci&oacute;n Superior P&uacute;blico</text>
+      </svg>
+      <div class="d-none d-md-block">
+        <div class="logo-text">Gu&iacute;a APA 7 <small>Uso de IA Generativa</small></div>
+      </div>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <div class="idc-dropdown d-none d-lg-block">
+        <button class="btn-idc-outline btn-sm"><i class="bi bi-collection"></i> Recursos</button>
+        <div class="idc-dropdown-content">
+          <a class="idc-dropdown-item" href="https://apastyle.apa.org/blog/citing-generative-ai" target="_blank"><i class="bi bi-link-45deg me-2"></i>APA Style Blog (2025)</a>
+          <a class="idc-dropdown-item" href="https://publicationethics.org" target="_blank"><i class="bi bi-link-45deg me-2"></i>COPE Statement (2024)</a>
+          <a class="idc-dropdown-item" href="https://idc.edu.pe" target="_blank"><i class="bi bi-link-45deg me-2"></i>IDC - P&aacute;gina oficial</a>
+          <a class="idc-dropdown-item" href="#herramientas" onclick="switchTab('atribuciones')"><i class="bi bi-file-text me-2"></i>Reglamento IA IDC (2026)</a>
+        </div>
+      </div>
+      <a href="https://idc.edu.pe" target="_blank" class="btn-idc-gold btn-sm"><i class="bi bi-globe"></i> <span class="d-none d-sm-inline">idc.edu.pe</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════════ -->
+<section class="hero-section">
+  <div class="container hero-content">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <div class="hero-badge"><i class="bi bi-stars"></i> Gu&iacute;a Institucional IDC</div>
+        <h1 class="hero-title">APA 7 &middot; IA Generativa</h1>
+        <div class="hero-divider"></div>
+        <p class="hero-subtitle">Citas, referencias y declaraci&oacute;n de uso de inteligencia artificial para trabajos acad&eacute;micos</p>
+        <div class="d-flex flex-wrap gap-2 mt-3">
+          <span class="badge rounded-pill" style="background:rgba(243,161,0,.25);color:#f3a100;border:1px solid rgba(243,161,0,.4);font-weight:500"><i class="bi bi-robot"></i> AIAS 4</span>
+          <span class="badge rounded-pill" style="background:rgba(0,114,185,.2);color:#fff;border:1px solid rgba(0,114,185,.3)">Declaraci&oacute;n obligatoria</span>
+          <span class="badge rounded-pill" style="background:rgba(243,161,0,.15);color:#f3a100;border:1px solid rgba(243,161,0,.3)">6 Componentes (a-f)</span>
+        </div>
+      </div>
+      <div class="col-lg-4 d-none d-lg-block text-center">
+        <!-- 3D CUBE -->
+        <div class="cube-scene">
+          <div class="cube">
+            <div class="cube-face face-front"><i class="bi bi-book"></i></div>
+            <div class="cube-face face-back"><i class="bi bi-robot"></i></div>
+            <div class="cube-face face-right"><i class="bi bi-quote"></i></div>
+            <div class="cube-face face-left"><i class="bi bi-pen"></i></div>
+            <div class="cube-face face-top"><i class="bi bi-stars"></i></div>
+            <div class="cube-face face-bottom"><i class="bi bi-check-circle"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TAB BAR
+     ═══════════════════════════════════════════ -->
+<div class="tab-bar" id="herramientas">
+  <div class="container">
+    <div class="d-flex overflow-auto" style="gap:0">
+      <button class="tab-btn active" data-tab="cita-ia"><i class="bi bi-robot"></i> Cita IA</button>
+      <button class="tab-btn" data-tab="declaracion"><i class="bi bi-file-earmark-text"></i> Declaraci&oacute;n IA</button>
+      <button class="tab-btn" data-tab="doi"><i class="bi bi-search"></i> Cita DOI</button>
+      <button class="tab-btn" data-tab="aias"><i class="bi bi-bar-chart-steps"></i> Escala AIAS</button>
+      <button class="tab-btn" data-tab="guia"><i class="bi bi-question-circle"></i> &iquest;Cu&aacute;ndo citar?</button>
+      <button class="tab-btn" data-tab="atribuciones"><i class="bi bi-globe"></i> Atribuciones web</button>
+      <button class="tab-btn" data-tab="academica"><i class="bi bi-book"></i> Cita Acad&eacute;mica</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════ -->
+<div class="container py-4">
+
+<!-- ═════ TAB 1: CITA IA ═════ -->
+<div id="panel-cita-ia" class="tab-panel active">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="idc-card">
+        <div class="card-header-idc">
+          <h3><i class="bi bi-robot me-2"></i>Generador APA 7 para contenido IA</h3>
+          <p>Texto, imagen, v&iacute;deo, audio, c&oacute;digo, 3D &mdash; multiformato</p>
+        </div>
+        <div class="card-body-idc">
+          <!-- Content Type -->
+          <div class="mb-3">
+            <label class="idc-label">Tipo de contenido</label>
+            <select class="form-select idc-input" id="contentType" onchange="renderFields()">
+              <option value="text">&#9999;&#65039; Texto / Chatbot</option>
+              <option value="image">&#128444;&#65039; Imagen (DALL&middot;E, Midjourney, Firefly...)</option>
+              <option value="video">&#127909; V&iacute;deo (Runway, Pika...)</option>
+              <option value="audio">&#127925; Audio / Voz (ElevenLabs, Suno...)</option>
+              <option value="code">&#128187; C&oacute;digo (Copilot, Cody...)</option>
+              <option value="3d">&#128230; Modelado 3D (CLO 3D, Meshy...)</option>
+            </select>
+          </div>
+          <!-- Dynamic Fields -->
+          <div id="dynamicFields"></div>
+          <!-- Format selector -->
+          <div class="d-flex align-items-center gap-3 flex-wrap mb-3 p-2" style="background:rgba(0,114,185,.04);border-radius:30px">
+            <span style="font-size:.75rem;color:var(--idc-md)">Formato al copiar:</span>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="copyFmt" value="rich" checked onchange="updateCitation()"> Rich Text</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="copyFmt" value="plain" onchange="updateCitation()"> Texto Plano</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="copyFmt" value="md" onchange="updateCitation()"> Markdown</label>
+          </div>
+          <!-- Reference Output -->
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span style="font-size:.85rem;font-weight:600;color:var(--idc-blue)"><i class="bi bi-file-text me-1"></i>Referencia APA 7</span>
+            <button class="btn-idc-blue btn-sm" onclick="copyRef()"><i class="bi bi-clipboard"></i> Copiar</button>
+          </div>
+          <div class="output-block" id="refOutput">&mdash; Complete los campos &mdash;</div>
+          <!-- In-text Citation -->
+          <div class="d-flex justify-content-between align-items-center mb-2 mt-3">
+            <span style="font-size:.85rem;font-weight:600;color:var(--idc-blue)"><i class="bi bi-chat-quote me-1"></i>Cita en texto</span>
+            <button class="btn-idc-blue btn-sm" onclick="copyCite()"><i class="bi bi-clipboard"></i> Copiar</button>
+          </div>
+          <div class="output-block" id="citeOutput">&mdash; &mdash;</div>
+          <!-- Figure Note -->
+          <div id="figureNoteBlock"></div>
+          <!-- Warning -->
+          <div class="alert-idc-orange mt-3"><strong style="color:var(--idc-gold)"><i class="bi bi-exclamation-triangle me-1"></i>Verificaci&oacute;n humana obligatoria:</strong> los modelos de IA pueden alucinar datos. Siempre contraste con fuentes originales.</div>
+          <!-- Print Buttons -->
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn-idc-outline btn-sm" onclick="downloadPDF('cita')"><i class="bi bi-file-earmark-pdf"></i> Descargar PDF</button>
+            <button class="btn-idc-outline btn-sm" onclick="downloadCSV('cita')"><i class="bi bi-file-earmark-spreadsheet"></i> Descargar CSV</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <!-- Holographic Card -->
+      <div class="holo-card mb-3">
+        <div class="holo-content">
+          <div class="text-center">
+            <i class="bi bi-lightbulb" style="font-size:2.5rem;color:var(--idc-gold)"></i>
+            <h5 class="mt-2 mb-1" style="color:var(--idc-blue);font-weight:600">Tip</h5>
+            <p style="font-size:.8rem;color:var(--idc-md);margin:0">Selecciona el tipo de contenido generado por IA y completa los campos para obtener la referencia APA 7 autom&aacute;ticamente.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Flip Card -->
+      <div class="flip-card mb-3">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <i class="bi bi-book" style="font-size:2.5rem;color:var(--idc-blue)"></i>
+            <h6 class="mt-2" style="color:var(--idc-blue);font-weight:600">APA 7</h6>
+            <p style="font-size:.75rem;color:var(--idc-md);margin:0">McAdoo, Denneny y Lee (2025)</p>
+          </div>
+          <div class="flip-card-back">
+            <i class="bi bi-check-circle" style="font-size:2rem"></i>
+            <p style="font-size:.8rem;margin:.5rem 0 0">&ldquo;Las herramientas de IA no son autores&rdquo;</p>
+          </div>
+        </div>
+      </div>
+      <!-- Chameleon Card -->
+      <div class="chameleon-card">
+        <div class="text-center">
+          <i class="bi bi-shield-check" style="font-size:2rem;color:var(--idc-blue)"></i>
+          <h6 class="mt-2" style="font-weight:600;color:var(--idc-blue)">Integridad acad&eacute;mica</h6>
+          <p style="font-size:.78rem;color:var(--idc-md);margin:0">La declaraci&oacute;n de uso de IA es obligatoria en todas las evaluaciones del IDC (Art. 9).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═════ TAB 2: DECLARACIÓN IA ═════ -->
+<div id="panel-declaracion" class="tab-panel">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="idc-card">
+        <div class="card-header-idc">
+          <h3><i class="bi bi-file-earmark-text me-2"></i>Declaraci&oacute;n de uso de inteligencia artificial</h3>
+          <p>Modelo institucional IDC &middot; Art&iacute;culo 9 del Reglamento IA</p>
+        </div>
+        <div class="card-body-idc">
+          <div class="mb-3">
+            <label class="idc-label">Nombre del estudiante o equipo</label>
+            <input class="idc-input" id="dStudent" value="[Nombre del estudiante o equipo]">
+          </div>
+          <div class="mb-3">
+            <label class="idc-label">Nivel AIAS (1 a 5)</label>
+            <select class="form-select idc-input" id="dAias" onchange="updateBitacora()">
+              <option value="1">Nivel AIAS 1 &mdash; Sin IA</option>
+              <option value="2" selected>Nivel AIAS 2 &mdash; Planificaci&oacute;n asistida</option>
+              <option value="3">Nivel AIAS 3 &mdash; Finalizaci&oacute;n asistida</option>
+              <option value="4">Nivel AIAS 4 &mdash; IA completa</option>
+              <option value="5">Nivel AIAS 5 &mdash; Exploraci&oacute;n de IA</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="idc-label">a) Herramientas empleadas (nombre + versi&oacute;n + desarrollador)</label>
+            <textarea class="idc-input idc-textarea" id="dTools" rows="2">ChatGPT (GPT-4o, OpenAI); Midjourney (v7, Midjourney Inc.)</textarea>
+          </div>
+          <div class="mb-3">
+            <label class="idc-label">b) Tareas asistidas con IA (concretas)</label>
+            <textarea class="idc-input idc-textarea" id="dTasks" rows="3">Generaci&oacute;n inicial de bocetos visuales; exploraci&oacute;n de referentes; revisi&oacute;n ortotipogr&aacute;fica; s&iacute;ntesis bibliogr&aacute;fica preliminar.</textarea>
+          </div>
+          <div class="mb-3">
+            <label class="idc-label">c) Tareas NO asistidas con IA (autor&iacute;a humana exclusiva)</label>
+            <textarea class="idc-input idc-textarea" id="dHuman" rows="3">Concepto creativo, narrativa de proyecto, selecci&oacute;n final de im&aacute;genes, redacci&oacute;n del an&aacute;lisis cr&iacute;tico, conclusiones, defensa oral.</textarea>
+          </div>
+          <div class="mb-3">
+            <label class="idc-label">d) Procedimiento de filtrado y verificaci&oacute;n humana</label>
+            <textarea class="idc-input idc-textarea" id="dFilter" rows="3">Cada cita generada por IA fue verificada manualmente en su fuente original; las im&aacute;genes fueron editadas por el autor en Adobe Photoshop; las afirmaciones t&eacute;cnicas fueron contrastadas con bibliograf&iacute;a especializada.</textarea>
+          </div>
+          <div class="mb-3">
+            <label class="idc-label">Fecha (ej: Lima, 10 de mayo de 2026)</label>
+            <input class="idc-input" id="dDate" value="Lima, 10 de mayo de 2026">
+          </div>
+          <!-- Bitacora notice -->
+          <div class="alert-idc-blue mb-3" id="bitacoraNotice">
+            <strong style="color:var(--idc-blue)"><i class="bi bi-journal-text me-1"></i>Bit&aacute;cora de prompts:</strong>
+            <span id="bitacoraText">Para niveles AIAS 3, 4 y 5, as&iacute; como para todos los Trabajos de Aplicaci&oacute;n Profesional (TAP), es OBLIGATORIO adjuntar la bit&aacute;cora de prompts conforme al Anexo 3 del Reglamento.</span>
+          </div>
+          <!-- Buttons -->
+          <div class="d-flex gap-2 mb-3">
+            <button class="btn-idc-gold" onclick="generateDeclaration()"><i class="bi bi-file-earmark-check"></i> Generar Declaraci&oacute;n oficial</button>
+            <button class="btn-idc-blue" onclick="copyDeclaration()"><i class="bi bi-clipboard"></i> Copiar declaraci&oacute;n</button>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn-idc-outline btn-sm" onclick="downloadPDF('declaracion')"><i class="bi bi-file-earmark-pdf"></i> Descargar PDF</button>
+            <button class="btn-idc-outline btn-sm" onclick="downloadCSV('declaracion')"><i class="bi bi-file-earmark-spreadsheet"></i> Descargar CSV</button>
+          </div>
+          <!-- Output -->
+          <div class="output-block mt-3" id="declOutput" style="max-height:400px;overflow-y:auto">Complete los campos y presione &ldquo;Generar Declaraci&oacute;n oficial&rdquo;.</div>
+          <p class="mt-2" style="font-size:.7rem;color:var(--idc-md)">La declaraci&oacute;n sigue el formato exacto de la Gu&iacute;a institucional IDC para APA 7 (McAdoo, Denneny y Lee, 2025). Incluye los seis componentes obligatorios (a-f) y la asunci&oacute;n de responsabilidad.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <!-- Profile Slide Card -->
+      <div class="profile-slide-card mb-3">
+        <div class="profile-slide-front">
+          <i class="bi bi-file-earmark-text" style="font-size:2.5rem"></i>
+          <h6 class="mt-2">6 Componentes</h6>
+        </div>
+        <div class="profile-slide-back">
+          <p style="font-size:.8rem;margin:0;text-align:center;padding:0 1rem">a) Herramientas<br>b) Tareas asistidas<br>c) Tareas NO asistidas<br>d) Filtrado humano<br>e) Bit&aacute;cora de prompts<br>f) Asunci&oacute;n de responsabilidad</p>
+        </div>
+      </div>
+      <!-- Tourist Card -->
+      <div class="tourist-card p-3 mb-3">
+        <div class="d-flex align-items-center gap-3">
+          <div style="width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--idc-gold),var(--idc-blue));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem"><i class="bi bi-shield-check"></i></div>
+          <div>
+            <h6 class="mb-0" style="font-weight:600;color:var(--idc-blue)">Art&iacute;culo 9</h6>
+            <p class="mb-0" style="font-size:.75rem;color:var(--idc-md)">Reglamento Institucional IDC sobre Uso &Eacute;tico de IA Generativa</p>
+          </div>
+        </div>
+      </div>
+      <!-- Glass Card -->
+      <div class="glass-card">
+        <div class="glass-content text-center">
+          <i class="bi bi-exclamation-triangle" style="font-size:2rem;color:var(--idc-gold)"></i>
+          <h6 class="mt-2" style="font-weight:600;color:var(--idc-blue)">Sanci&oacute;n</h6>
+          <p style="font-size:.78rem;color:var(--idc-md);margin:0">La omisi&oacute;n de la declaraci&oacute;n de IA constituye falta leve (Art. 20) que escala a grave en reincidencia. Plagio asistido por IA = Art. 22.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═════ TAB 3: CITA DOI ═════ -->
+<div id="panel-doi" class="tab-panel">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="idc-card">
+        <div class="card-header-idc">
+          <h3><i class="bi bi-search me-2"></i>Cita autom&aacute;tica desde DOI / CrossRef</h3>
+          <p>Extrae metadatos de art&iacute;culos cient&iacute;ficos</p>
+        </div>
+        <div class="card-body-idc">
+          <div class="row g-2 mb-3">
+            <div class="col-md-9">
+              <label class="idc-label">DOI o URL</label>
+              <input class="idc-input" id="doiInput" placeholder="10.1016/j.patter.2023.100779" onkeydown="if(event.key==='Enter')detectDOI()">
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+              <button class="btn-idc-blue w-100" onclick="detectDOI()" id="doiBtn"><i class="bi bi-search"></i> Detectar</button>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span style="font-size:.85rem;font-weight:600;color:var(--idc-blue)"><i class="bi bi-book me-1"></i>Referencia APA 7</span>
+            <button class="btn-idc-blue btn-sm" onclick="copyAutoRef()"><i class="bi bi-clipboard"></i> Copiar</button>
+          </div>
+          <div class="output-block" id="autoRefOutput">Ingrese un DOI v&aacute;lido.</div>
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn-idc-outline btn-sm" onclick="downloadPDF('doi')"><i class="bi bi-file-earmark-pdf"></i> Descargar PDF</button>
+            <button class="btn-idc-outline btn-sm" onclick="downloadCSV('doi')"><i class="bi bi-file-earmark-spreadsheet"></i> Descargar CSV</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="holo-card">
+        <div class="holo-content text-center">
+          <i class="bi bi-database" style="font-size:2.5rem;color:var(--idc-blue)"></i>
+          <h5 class="mt-2" style="color:var(--idc-blue);font-weight:600">CrossRef API</h5>
+          <p style="font-size:.8rem;color:var(--idc-md);margin:0">Introduce un DOI v&aacute;lido (formato: 10.XXXX/XXXX) para obtener la referencia APA 7 completa.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═════ TAB 4: ESCALA AIAS ═════ -->
+<div id="panel-aias" class="tab-panel">
+  <div class="row">
+    <div class="col-12">
+      <div class="idc-card">
+        <div class="card-header-idc">
+          <h3><i class="bi bi-bar-chart-steps me-2"></i>Escala AIAS Revisada</h3>
+          <p>Niveles de integraci&oacute;n de IA en evaluaciones &middot; IDC</p>
+        </div>
+        <div class="card-body-idc">
+          <div class="table-responsive">
+            <table class="aias-table">
+              <thead>
+                <tr><th>Nivel</th><th>Denominaci&oacute;n</th><th>Uso permitido</th><th>Ejemplo</th></tr>
+              </thead>
+              <tbody>
+                <tr><td style="font-weight:700;color:var(--idc-gold);font-size:1.2rem;text-align:center">1</td><td style="font-weight:600">Sin IA</td><td>Ninguno. Entorno supervisado.</td><td>An&aacute;lisis en aula, patronaje manual.</td></tr>
+                <tr><td style="font-weight:700;color:var(--idc-gold);font-size:1.2rem;text-align:center">2</td><td style="font-weight:600">Planificaci&oacute;n asistida</td><td>IA solo en ideaci&oacute;n/estructura previa.</td><td>Moodboards, estructura de gui&oacute;n.</td></tr>
+                <tr><td style="font-weight:700;color:var(--idc-blue);font-size:1.2rem;text-align:center">3</td><td style="font-weight:600">Finalizaci&oacute;n asistida</td><td>Redacci&oacute;n, edici&oacute;n, an&aacute;lisis con voz propia.</td><td>Informe t&eacute;cnico con revisi&oacute;n de estilo.</td></tr>
+                <tr><td style="font-weight:700;color:var(--idc-blue);font-size:1.2rem;text-align:center">4</td><td style="font-weight:600">IA completa</td><td>Uso estrat&eacute;gico durante toda la evaluaci&oacute;n.</td><td>Teaser con IA, campa&ntilde;a publicitaria.</td></tr>
+                <tr><td style="font-weight:700;color:var(--idc-gold);font-size:1.2rem;text-align:center">5</td><td style="font-weight:600">Exploraci&oacute;n de IA</td><td>Co-creaci&oacute;n de metodolog&iacute;as.</td><td>Documental interactivo multimodal.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Visual scale -->
+          <div class="row mt-4">
+            <div class="col">
+              <div class="d-flex justify-content-between align-items-center p-3" style="background:linear-gradient(90deg,rgba(243,161,0,.1),rgba(0,114,185,.1),rgba(243,161,0,.1));border-radius:12px">
+                <div class="text-center flex-fill">
+                  <div style="width:40px;height:40px;border-radius:50%;background:var(--idc-dk);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto">1</div>
+                  <small style="font-size:.65rem;color:var(--idc-md)">Sin IA</small>
+                </div>
+                <div style="flex:1;height:2px;background:linear-gradient(90deg,var(--idc-gold),var(--idc-blue));margin:0 8px"></div>
+                <div class="text-center flex-fill">
+                  <div style="width:40px;height:40px;border-radius:50%;background:var(--idc-md);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto">2</div>
+                  <small style="font-size:.65rem;color:var(--idc-md)">Planif.</small>
+                </div>
+                <div style="flex:1;height:2px;background:linear-gradient(90deg,var(--idc-blue),var(--idc-gold));margin:0 8px"></div>
+                <div class="text-center flex-fill">
+                  <div style="width:40px;height:40px;border-radius:50%;background:var(--idc-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto">3</div>
+                  <small style="font-size:.65rem;color:var(--idc-md)">Final.</small>
+                </div>
+                <div style="flex:1;height:2px;background:linear-gradient(90deg,var(--idc-gold),var(--idc-blue));margin:0 8px"></div>
+                <div class="text-center flex-fill">
+                  <div style="width:45px;height:45px;border-radius:50%;background:var(--idc-gold);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto;font-size:1.2rem">4</div>
+                  <small style="font-size:.65rem;color:var(--idc-gold);font-weight:600">IA Comp.</small>
+                </div>
+                <div style="flex:1;height:2px;background:linear-gradient(90deg,var(--idc-blue),var(--idc-gold));margin:0 8px"></div>
+                <div class="text-center flex-fill">
+                  <div style="width:40px;height:40px;border-radius:50%;background:var(--idc-blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto">5</div>
+                  <small style="font-size:.65rem;color:var(--idc-md)">Explor.</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="alert-idc-orange mt-3">
+            <strong style="color:var(--idc-gold)"><i class="bi bi-info-circle me-1"></i>Nota:</strong> La escala AIAS (AI Assistance Scale) Revisada fue desarrollada por el IDC para clasificar el nivel de integraci&oacute;n de IA en evaluaciones acad&eacute;micas. Cada docente debe declarar el nivel requerido para sus evaluaciones.
+          </div>
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn-idc-outline btn-sm" onclick="downloadPDF('aias')"><i class="bi bi-file-earmark-pdf"></i> Descargar PDF</button>
+            <button class="btn-idc-outline btn-sm" onclick="downloadCSV('aias')"><i class="bi bi-file-earmark-spreadsheet"></i> Descargar CSV</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═════ TAB 5: ¿CUÁNDO CITAR? ═════ -->
+<div id="panel-guia" class="tab-panel">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="idc-card">
+        <div class="card-header-idc">
+          <h3><i class="bi bi-question-circle me-2"></i>2.2 &iquest;Cu&aacute;ndo citar y cu&aacute;ndo no?</h3>
+          <p>Reglas esenciales seg&uacute;n la Gu&iacute;a Institucional IDC y APA Style (McAdoo, Denneny y Lee, 2025)</p>
+        </div>
+        <div class="card-body-idc">
+          <ul style="list-style:none;padding:0">
+            <li class="mb-3 ps-4 position-relative">
+              <span class="position-absolute start-0" style="color:var(--idc-gold);font-weight:700;font-size:1.3rem">&#10003;</span>
+              <strong style="color:var(--idc-blue)">Citar SIEMPRE</strong> que se reproduzca textualmente o parafrasee con fidelidad estructural un fragmento producido por la IA.
+            </li>
+            <li class="mb-3 ps-4 position-relative">
+              <span class="position-absolute start-0" style="color:var(--idc-gold);font-weight:700;font-size:1.3rem">&#10003;</span>
+              <strong style="color:var(--idc-blue)">Citar</strong> cuando la IA haya generado un esquema, tabla, clasificaci&oacute;n o categorizaci&oacute;n que estructure el argumento.
+            </li>
+            <li class="mb-3 ps-4 position-relative">
+              <span class="position-absolute start-0" style="color:var(--idc-gold);font-weight:700;font-size:1.3rem">&#10003;</span>
+              <strong style="color:var(--idc-blue)">Citar</strong> cuando la IA haya traducido un fragmento citado a otro idioma sin verificaci&oacute;n con un traductor humano.
+            </li>
+            <li class="mb-3 ps-4 position-relative">
+              <span class="position-absolute start-0" style="color:var(--idc-dk);font-weight:700;font-size:1.3rem">&#10007;</span>
+              <strong style="color:var(--idc-dk)">NO es necesario citar</strong> cuando la IA solo realiz&oacute; funciones de correcci&oacute;n ortotipogr&aacute;fica, b&uacute;squeda exploratoria de fuentes o asistencia menor de redacci&oacute;n totalmente reescrita por el autor; en estos casos <strong>basta con declararlo en la secci&oacute;n de Declaraci&oacute;n de uso de IA</strong>.
+            </li>
+            <li class="mb-3 ps-4 position-relative">
+              <span class="position-absolute start-0" style="color:var(--idc-dk);font-weight:700;font-size:1.3rem">&#10007;</span>
+              <strong style="color:var(--idc-dk)">NO se atribuyen ideas u opiniones a la IA:</strong> ning&uacute;n sistema generativo es un autor acad&eacute;mico v&aacute;lido <span style="font-size:.8rem;background:#eef2fa;padding:.3rem .6rem;border-radius:8px;color:var(--idc-md)">(McAdoo et al., 2025, Part 3; COPE, 2024)</span>.
+            </li>
+          </ul>
+          <div class="alert-idc-orange mt-3">
+            <strong style="color:var(--idc-gold)"><i class="bi bi-exclamation-triangle me-1"></i>Nota institucional IDC:</strong> La omisi&oacute;n de la declaraci&oacute;n o citaci&oacute;n de IA cuando esta ha sido empleada constituye, conforme al Art&iacute;culo 20 del Reglamento Institucional, una falta leve que escala a falta grave en caso de reincidencia. La presentaci&oacute;n como propio de contenido &iacute;ntegramente generado por IA configura plagio asistido por IA (Art&iacute;culo 22).
+          </div>
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn-idc-outline btn-sm" onclick="downloadPDF('guia')"><i class="bi bi-file-earmark-pdf"></i> Descargar PDF</button>
+          </div>
+          <p class="mt-2" style="font-size:.7rem;color:var(--idc-md)">Fuente: Gu&iacute;a institucional para la citaci&oacute;n APA 7 de inteligencia artificial generativa &ndash; IDC (2026), secci&oacute;n 2.2. Adaptado de McAdoo, T., Denneny, S., &amp; Lee, C. (2025). <em>APA Style Blog</em>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <!-- Glassmorphism card -->
+      <div class="glass-card mb-3">
+        <div class="glass-content">
+          <div class="text-center">
+            <i class="bi bi-lightbulb" style="font-size:2.5rem;color:var(--idc-gold)"></i>
+            <h5 class="mt-2" style="color:var(--idc-blue);font-weight:600">Regla mnemot&eacute;cnica</h5>
+            <p style="font-size:.82rem;color:var(--idc-md);margin:0">Si la IA <strong style="color:var(--idc-blue)">cre&oacute;</strong> contenido que usas &rarr; <strong style="color:var(--idc-gold)">cita</strong>. Si solo <strong style="color:var(--idc-dk)">revis&oacute;</strong> tu trabajo &rarr; solo <strong style="color:var(--idc-blue)">declara</strong>.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Flip card -->
+      <div class="flip-card" style="height:180px">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <i class="bi bi-shield-exclamation" style="font-size:2rem;color:var(--idc-gold)"></i>
+            <h6 class="mt-2" style="color:var(--idc-blue);font-weight:600">&iquest;Sanciones?</h6>
+          </div>
+          <div class="flip-card-back">
+            <p style="font-size:.8rem;margin:.5rem 0 0">Falta leve (Art. 20) &rarr; Grave (reincidencia). Plagio IA = Art. 22</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═════ TAB 6: ATRIBUCIONES WEB ═════ -->
+<div id="panel-atribuciones" class="tab-panel">
+  <div class="row">
+    <div class="col-12">
+      <div class="idc-card">
+        <div class="card-header-idc">
+          <h3><i class="bi bi-globe me-2"></i>Atribuciones de esta web</h3>
+          <p>Declaraci&oacute;n oficial de uso de IA &middot; Todo el contenido generado con asistencia de IA</p>
+        </div>
+        <div class="card-body-idc">
+          <!-- Declaration Banner -->
+          <div class="alert-idc-blue mb-4">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <i class="bi bi-robot" style="font-size:1.5rem;color:var(--idc-blue)"></i>
+              <strong style="color:var(--idc-blue)">DECLARACI&Oacute;N OFICIAL DE USO DE IA &mdash; ESTA WEB</strong>
+            </div>
+            <p style="margin:0">El presente sitio web declara el uso de inteligencia artificial generativa en su elaboraci&oacute;n, conforme al <strong style="color:var(--idc-gold)">Nivel AIAS 4 (IA completa)</strong> del Reglamento Institucional IDC. Todo el contenido textual, visual y c&oacute;digo ha sido generado con asistencia de IA y est&aacute; debidamente documentado en las tablas de atribuci&oacute;n a continuaci&oacute;n.</p>
+            <div class="d-flex gap-3 mt-2 flex-wrap" style="font-size:.78rem;color:var(--idc-md)">
+              <span><strong style="color:var(--idc-gold)">Herramientas:</strong> ChatGPT (GPT-4o, OpenAI); DALL-E 3 (OpenAI); Copilot (GitHub)</span>
+              <span><strong style="color:var(--idc-gold)">Fecha:</strong> Lima, 2026</span>
+            </div>
+          </div>
+
+          <!-- Texts Table -->
+          <h5 class="mb-3" style="color:var(--idc-blue);font-weight:600;font-size:.9rem"><i class="bi bi-file-text me-1"></i> TEXTOS GENERADOS POR IA</h5>
+          <div class="table-responsive mb-4">
+            <table class="aias-table">
+              <thead><tr><th>Descripci&oacute;n</th><th>Herramienta IA</th><th>Prompt / Uso</th><th>Verificaci&oacute;n humana</th></tr></thead>
+              <tbody>
+                <tr><td>Textos de interfaz, gu&iacute;as de citaci&oacute;n, normativa APA 7</td><td><code style="color:var(--idc-gold)">ChatGPT (GPT-4o, OpenAI)</code></td><td><em style="color:var(--idc-md)">Redacci&oacute;n de gu&iacute;a institucional para citaci&oacute;n APA 7 de contenido IA</em></td><td>Revisado y contrastado con APA Style Blog (2025) y Reglamento IDC</td></tr>
+                <tr><td>Ejemplos de referencias, declaraci&oacute;n de uso</td><td><code style="color:var(--idc-gold)">ChatGPT (GPT-4o, OpenAI)</code></td><td><em style="color:var(--idc-md)">Generar plantilla de declaraci&oacute;n de uso de IA con 6 componentes</em></td><td>Verificado con Gu&iacute;a Institucional IDC (2026)</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Code Table -->
+          <h5 class="mb-3" style="color:var(--idc-blue);font-weight:600;font-size:.9rem"><i class="bi bi-code-slash me-1"></i> C&Oacute;DIGO GENERADO POR IA</h5>
+          <div class="table-responsive mb-4">
+            <table class="aias-table">
+              <thead><tr><th>Descripci&oacute;n</th><th>Herramienta IA</th><th>Prompt / Uso</th><th>Edici&oacute;n humana</th></tr></thead>
+              <tbody>
+                <tr><td>Generador de citas APA 7, declaraci&oacute;n de IA, cita DOI</td><td><code style="color:var(--idc-gold)">Copilot (GitHub); ChatGPT (OpenAI)</code></td><td><em style="color:var(--idc-md)">Desarrollar aplicaci&oacute;n PWA con generador de citas APA 7 para IA</em></td><td>Refactorizado, optimizado y revisado manualmente</td></tr>
+                <tr><td>Animaciones CSS, efectos interactivos, dise&ntilde;o visual</td><td><code style="color:var(--idc-gold)">ChatGPT (OpenAI)</code></td><td><em style="color:var(--idc-md)">Implementar efectos hover CSS: hologr&aacute;fico, vidrio, cubo 3D</em></td><td>Ajustado y verificado visualmente</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Reference -->
+          <div class="output-block">
+            <div style="font-size:.7rem;color:var(--idc-md);margin-bottom:.5rem;font-family:var(--font-mono)">REFERENCIA APA 7 PARA ESTE CONTENIDO</div>
+            <div style="font-family:var(--font-mono);font-size:.82rem">
+OpenAI. (2026). <em style="color:var(--idc-gold)">ChatGPT (GPT-4o)</em> [Modelo de lenguaje de gran tama&ntilde;o]. https://openai.com
+            </div>
+            <div style="margin-top:.5rem;font-size:.78rem;color:var(--idc-md)">Cita en texto: (OpenAI, 2026)</div>
+          </div>
+
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn-idc-outline btn-sm" onclick="downloadPDF('atribuciones')"><i class="bi bi-file-earmark-pdf"></i> Descargar PDF</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- TAB 7: CITA ACADEMICA -->
+<div id="panel-academica" class="tab-panel">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="idc-card">
+        <div class="card-header-idc">
+          <h3><i class="bi bi-book"></i> Generador de Citas Acad&eacute;micas</h3>
+          <p>APA 7 / MLA / Chicago / Harvard / Vancouver / Turabian / IEEE / Personalizado</p>
+        </div>
+        <div class="card-body-idc">
+          <div class="row g-2 mb-3"><div class="col-12"><label class="idc-label">T&iacute;tulo del art&iacute;culo</label><input class="idc-input" id="acTitle" placeholder="Escriba el t&iacute;tulo completo" oninput="generateAcademicCite()"></div></div>
+          <div class="row g-2 mb-3">
+            <div class="col-md-6"><label class="idc-label">Autores (Apellido, Nombre; ...)</label><input class="idc-input" id="acAuthors" placeholder="Garc&iacute;a, Juan; L&oacute;pez, Mar&iacute;a" oninput="generateAcademicCite()"></div>
+            <div class="col-md-6"><label class="idc-label">Revista / Journal</label><input class="idc-input" id="acJournal" placeholder="Journal of Design Research" oninput="generateAcademicCite()"></div>
+          </div>
+          <div class="row g-2 mb-3">
+            <div class="col-md-3 col-6"><label class="idc-label">Volumen</label><input class="idc-input" id="acVolume" placeholder="12" oninput="generateAcademicCite()"></div>
+            <div class="col-md-3 col-6"><label class="idc-label">N&uacute;mero</label><input class="idc-input" id="acIssue" placeholder="3" oninput="generateAcademicCite()"></div>
+            <div class="col-md-3 col-6"><label class="idc-label">P&aacute;ginas</label><input class="idc-input" id="acPages" placeholder="45-67" oninput="generateAcademicCite()"></div>
+            <div class="col-md-3 col-6"><label class="idc-label">A&ntilde;o</label><input class="idc-input" id="acYear" placeholder="2025" oninput="generateAcademicCite()"></div>
+          </div>
+          <div class="row g-2 mb-3">
+            <div class="col-md-6"><label class="idc-label">DOI</label><input class="idc-input" id="acDoi" placeholder="10.1016/j.design.2025.03.004" oninput="generateAcademicCite()"></div>
+            <div class="col-md-3 col-6"><label class="idc-label">Mes (opcional)</label><input class="idc-input" id="acMonth" placeholder="Marzo" oninput="generateAcademicCite()"></div>
+            <div class="col-md-3 col-6"><label class="idc-label">D&iacute;a (opcional)</label><input class="idc-input" id="acDay" placeholder="15" oninput="generateAcademicCite()"></div>
+          </div>
+          <div class="d-flex align-items-center gap-3 flex-wrap mb-3 p-2" style="background:rgba(0,114,185,.04);border-radius:30px">
+            <span style="font-size:.75rem;color:var(--idc-md)">Formato:</span>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="APA" checked onchange="generateAcademicCite()"> APA 7</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="MLA" onchange="generateAcademicCite()"> MLA</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="Chicago" onchange="generateAcademicCite()"> Chicago</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="Harvard" onchange="generateAcademicCite()"> Harvard</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="Vancouver" onchange="generateAcademicCite()"> Vancouver</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="Turabian" onchange="generateAcademicCite()"> Turabian</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="IEEE" onchange="generateAcademicCite()"> IEEE</label>
+            <label class="d-flex align-items-center gap-1" style="font-size:.78rem;cursor:pointer"><input type="radio" name="acFormat" value="Personalizado" onchange="toggleCustomFormat();generateAcademicCite()"> Personalizado</label>
+          </div>
+          <div id="customFormatBox" style="display:none" class="mb-3">
+            <label class="idc-label">Plantilla personalizada <small style="color:var(--idc-md)">Usa: {APA_NAMES}, {TITLE}, {JOURNAL}, {YEAR}, {VOLUME}, {ISSUE}, {PAGES}, {DOI}, {MONTH}, {DAY}, {NOW}</small></label>
+            <textarea class="idc-input idc-textarea" id="acCustomTpl" rows="2" placeholder="{APA_NAMES} ({YEAR}). {TITLE}. {JOURNAL}, {VOLUME}({ISSUE}), {PAGES}." oninput="generateAcademicCite()"></textarea>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span id="acOutputLabel" style="font-size:.85rem;font-weight:600;color:var(--idc-blue)">Cita APA 7</span>
+            <button class="btn-idc-blue btn-sm" onclick="copyAcademicCite()"><i class="bi bi-clipboard"></i> Copiar</button>
+          </div>
+          <div class="output-block" id="acOutput">Complete los campos para generar la cita acad&eacute;mica.</div>
+          <div class="d-flex gap-2 mt-3">
+            <button class="btn-idc-outline btn-sm" onclick="downloadPDF('academica')">Descargar PDF</button>
+            <button class="btn-idc-outline btn-sm" onclick="downloadCSV('academica')">Descargar CSV</button>
+          </div>
+          <div class="alert-idc-orange mt-3"><strong style="color:var(--idc-gold)">Tip:</strong> Los autores se separan con punto y coma (<code>;</code>). IEEE usa iniciales antes del apellido; APA usa &amp; antes del &uacute;ltimo autor.</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="holo-card">
+        <div class="holo-content text-center">
+          <i class="bi bi-book" style="font-size:2.5rem;color:var(--idc-blue)"></i>
+          <h5 class="mt-2" style="color:var(--idc-blue);font-weight:600">7 formatos acad&eacute;micos</h5>
+          <p style="font-size:.8rem;color:var(--idc-md);margin:0">Genera citas en APA 7, MLA, Chicago, Harvard, Vancouver, Turabian e IEEE. Incluye plantilla personalizada.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+
+
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════════ -->
+<footer class="footer-idc">
+  <div class="container">
+    <div class="d-flex justify-content-center gap-3 mb-3">
+      <a href="#" class="social-icon-btn"><i class="bi bi-facebook"></i></a>
+      <a href="#" class="social-icon-btn"><i class="bi bi-instagram"></i></a>
+      <a href="#" class="social-icon-btn"><i class="bi bi-youtube"></i></a>
+      <a href="https://idc.edu.pe" target="_blank" class="social-icon-btn"><i class="bi bi-globe"></i></a>
+    </div>
+    <div class="footer-divider"></div>
+    <p class="footer-brand">Jefatura de la Unidad de Investigaci&oacute;n (IDC) 2026</p>
+    <p>Instituto de Educaci&oacute;n Superior Tecnol&oacute;gico P&uacute;blico &ldquo;Dise&ntilde;o y Comunicaci&oacute;n&rdquo; &middot; Lima, Per&uacute;</p>
+    <p>Gu&iacute;a institucional APA 7 para inteligencia artificial generativa &middot; Versi&oacute;n 3 (mayo 2026)</p>
+    <p class="mt-2" style="font-size:.7rem;opacity:.6">
+      <span style="color:var(--idc-gold)">AIAS 4</span> &middot; Esta web fue co-creada con asistencia de IA &middot; 
+      <a href="#herramientas" onclick="switchTab('atribuciones')" style="color:rgba(255,255,255,.7);text-decoration:underline">Ver declaraci&oacute;n de uso</a>
+    </p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ═══════════════════════════════════════════
+// TAB SWITCHING
+// ═══════════════════════════════════════════
+function switchTab(tabId){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  const btn=document.querySelector(`[data-tab="${tabId}"]`);
+  const panel=document.getElementById('panel-'+tabId);
+  if(btn)btn.classList.add('active');
+  if(panel)panel.classList.add('active');
+  window.scrollTo({top:document.getElementById('herramientas').offsetTop-80,behavior:'smooth'});
+}
+
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>switchTab(btn.dataset.tab));
+});
+
+// ═══════════════════════════════════════════
+// CITA IA GENERATOR
+// ═══════════════════════════════════════════
+function renderFields(){
+  const cat=document.getElementById('contentType').value;
+  let html='<div class="row g-2 mb-3">';
+  html+='<div class="col-md-6"><label class="idc-label">Desarrollador</label><input class="idc-input" id="cDev" value="OpenAI"></div>';
+  html+='<div class="col-md-6"><label class="idc-label">Modelo</label><input class="idc-input" id="cModel" value="ChatGPT"></div>';
+  html+='</div><div class="row g-2 mb-3">';
+  html+='<div class="col-md-6"><label class="idc-label">Versi&oacute;n</label><input class="idc-input" id="cVer" value="GPT-4o"></div>';
+  html+='<div class="col-md-6"><label class="idc-label">A&ntilde;o</label><input class="idc-input" id="cYear" value="2026"></div>';
+  html+='</div>';
+  html+='<div class="mb-3"><label class="idc-label">URL</label><input class="idc-input" id="cUrl" value="https://chat.openai.com"></div>';
+
+  if(cat==='text'){
+    html+='<div class="mb-2"><label class="d-flex align-items-center gap-2" style="font-size:.85rem;cursor:pointer"><input type="radio" name="chatSpec" value="general" checked onchange="updateCitation()"> Referencia general</label>';
+    html+='<label class="d-flex align-items-center gap-2" style="font-size:.85rem;cursor:pointer"><input type="radio" name="chatSpec" value="specific" onchange="updateCitation()"> Chat espec&iacute;fico (enlace compartido)</label></div>';
+    html+='<div id="specFields" style="display:none">';
+    html+='<div class="mb-2"><label class="idc-label">T&iacute;tulo del chat</label><input class="idc-input" id="cChatTitle" value="" oninput="updateCitation()"></div>';
+    html+='<div class="row g-2 mb-2"><div class="col-6"><label class="idc-label">Mes</label><input class="idc-input" id="cMonth" value="mayo" oninput="updateCitation()"></div>';
+    html+='<div class="col-6"><label class="idc-label">D&iacute;a</label><input class="idc-input" id="cDay" value="15" oninput="updateCitation()"></div></div>';
+    html+='<div class="mb-2"><label class="idc-label">URL compartida</label><input class="idc-input" id="cChatUrl" value="" oninput="updateCitation()"></div></div>';
+  }else{
+    html+='<div class="mb-3"><label class="idc-label">Prompt</label><textarea class="idc-input idc-textarea" id="cPrompt" rows="2" oninput="updateCitation()"></textarea></div>';
+    html+='<div class="row g-2 mb-3"><div class="col-md-6"><label class="idc-label">T&iacute;tulo descriptivo</label><input class="idc-input" id="cTitleFig" value="Figura generada por IA" oninput="updateCitation()"></div>';
+    html+='<div class="col-md-6"><label class="idc-label">Edici&oacute;n humana</label><input class="idc-input" id="cEdition" value="Ajuste en Photoshop" oninput="updateCitation()"></div></div>';
+  }
+  document.getElementById('dynamicFields').innerHTML=html;
+
+  // Attach listeners
+  ['cDev','cModel','cVer','cYear','cUrl','cPrompt','cTitleFig','cEdition','cChatTitle','cMonth','cDay','cChatUrl'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.addEventListener('input',updateCitation);
+  });
+  document.querySelectorAll('input[name="chatSpec"]').forEach(r=>{
+    r.addEventListener('change',()=>{
+      const sf=document.getElementById('specFields');
+      if(sf)sf.style.display=r.value==='specific'?'block':'none';
+      updateCitation();
+    });
+  });
+  updateCitation();
+}
+
+function updateCitation(){
+  const cat=document.getElementById('contentType').value;
+  const dev=(document.getElementById('cDev')?.value||'OpenAI').trim();
+  const year=(document.getElementById('cYear')?.value||'2026').trim();
+  const model=(document.getElementById('cModel')?.value||'ChatGPT').trim();
+  const ver=(document.getElementById('cVer')?.value||'').trim();
+  const modelDisp=ver?`${model} (${ver})`:model;
+  const url=(document.getElementById('cUrl')?.value||'').trim();
+  let ref='',cite=`(${dev}, ${year})`;
+
+  if(cat==='text'){
+    const spec=document.querySelector('input[name="chatSpec"]:checked')?.value||'general';
+    if(spec==='specific'){
+      const title=(document.getElementById('cChatTitle')?.value||'Conversaci&oacute;n IA').trim();
+      const month=(document.getElementById('cMonth')?.value||'mayo').trim();
+      const day=(document.getElementById('cDay')?.value||'1').trim();
+      const cUrl=(document.getElementById('cChatUrl')?.value||url).trim();
+      ref=`${dev}. (${year}, ${day} de ${month}). <em>${title}</em> [Chat de IA generativa]. ${modelDisp}. ${cUrl}`;
+    }else{
+      ref=`${dev}. (${year}). <em>${modelDisp}</em> [Modelo de lenguaje de gran tama&ntilde;o]. ${url}`;
+    }
+  }else{
+    const prompt=(document.getElementById('cPrompt')?.value||'sin prompt').trim();
+    const labels={image:'Imagen generada con IA',video:'V&iacute;deo generado con IA',audio:'Audio generado con IA',code:'C&oacute;digo generado con IA','3d':'Modelo 3D generado con IA'};
+    const typeLabel=labels[cat]||'Contenido generado con IA';
+    ref=`${dev}. (${year}). Prompt: &ldquo;${prompt}&rdquo; [${typeLabel}]. ${modelDisp} [Herramienta de IA]. ${url}`;
+  }
+
+  document.getElementById('refOutput').innerHTML=ref;
+  document.getElementById('citeOutput').textContent=cite;
+
+  // Figure note
+  const titleFig=(document.getElementById('cTitleFig')?.value||'').trim();
+  const edition=(document.getElementById('cEdition')?.value||'').trim();
+  const prompt=(document.getElementById('cPrompt')?.value||'').trim();
+  if(titleFig&&cat!=='text'){
+    document.getElementById('figureNoteBlock').innerHTML=`
+      <div class="d-flex justify-content-between align-items-center mb-2 mt-3">
+        <span style="font-size:.85rem;font-weight:600;color:var(--idc-blue)"><i class="bi bi-pencil-square me-1"></i>Nota sugerida</span>
+        <button class="btn-idc-blue btn-sm" onclick="copyNote()"><i class="bi bi-clipboard"></i> Copiar nota</button>
+      </div>
+      <div class="output-block" id="noteContent"><strong>Figura 1.</strong> <em>${titleFig}</em><br><em>Nota.</em> Contenido generado con ${modelDisp} (${dev}, ${year}) a partir del prompt &ldquo;${prompt}&rdquo;. Edici&oacute;n humana: ${edition||'Sin edici&oacute;n adicional'}. Referencia: ${dev} (${year}).</div>`;
+  }else{
+    document.getElementById('figureNoteBlock').innerHTML='';
+  }
+}
+
+// ═══════════════════════════════════════════
+// DECLARATION GENERATOR
+// ═══════════════════════════════════════════
+function updateBitacora(){
+  const level=parseInt(document.getElementById('dAias').value);
+  const notice=document.getElementById('bitacoraText');
+  if(level>=3){
+    notice.innerHTML='Para este nivel AIAS (<strong>'+level+'</strong>) y para Trabajos de Aplicaci&oacute;n Profesional (TAP), es <strong>OBLIGATORIO</strong> adjuntar la bit&aacute;cora de prompts completa (Anexo 3 del Reglamento), incluyendo red de prompts cuando sea nivel 4 o 5.';
+  }else{
+    notice.innerHTML='Para niveles AIAS 1 y 2 no es obligatoria la bit&aacute;cora detallada, pero se recomienda registrar los prompts utilizados. Para niveles superiores (3,4,5) y TAP, es obligatoria.';
+  }
+}
+
+function generateDeclaration(){
+  const student=(document.getElementById('dStudent').value||'[Nombre]').trim();
+  const level=document.getElementById('dAias').value;
+  const levelTexts={1:'Nivel AIAS 1 (Sin IA)',2:'Nivel AIAS 2 (Planificaci&oacute;n asistida)',3:'Nivel AIAS 3 (Finalizaci&oacute;n asistida)',4:'Nivel AIAS 4 (IA completa)',5:'Nivel AIAS 5 (Exploraci&oacute;n de IA)'};
+  const levelText=levelTexts[level];
+  const tools=(document.getElementById('dTools').value||'[Listar herramientas]').trim();
+  const tasks=(document.getElementById('dTasks').value||'[Especificar tareas]').trim();
+  const human=(document.getElementById('dHuman').value||'[Especificar autor&iacute;a humana]').trim();
+  const filtering=(document.getElementById('dFilter').value||'[Describir verificaci&oacute;n]').trim();
+  const date=(document.getElementById('dDate').value||'Lima, [fecha]').trim();
+  const bitacora=parseInt(level)>=3?
+    'Se adjunta la bit&aacute;cora de prompts conforme al Anexo 3 del Reglamento Institucional, incluyendo prompts iniciales, secundarios y la red de prompts (prompt net) cuando aplica al Nivel AIAS 4 o 5.':
+    'Se adjunta la bit&aacute;cora de prompts conforme al Anexo 3 del Reglamento Institucional (requerida para niveles AIAS 3, 4, 5 y TAP).';
+
+  const decl=`DECLARACI&Oacute;N DE USO DE INTELIGENCIA ARTIFICIAL
+
+En cumplimiento del Art&iacute;culo 9 del Reglamento Institucional sobre Uso &Eacute;tico, Responsable y Transparente de IA Generativa del IDC y conforme al estilo APA 7 (McAdoo, Denneny y Lee, 2025), el presente trabajo declara los siguientes usos de inteligencia artificial generativa:
+
+${student} ha utilizado asistencia de inteligencia artificial generativa en la elaboraci&oacute;n de este trabajo, conforme al
+
+***${levelText}***
+
+declarado por el docente del curso para esta evaluaci&oacute;n.
+
+a) Herramientas empleadas:
+${tools}
+
+b) Tareas asistidas con IA:
+${tasks}
+
+c) Tareas NO asistidas con IA (autor&iacute;a humana exclusiva):
+${human}
+
+d) Procedimiento de filtrado y verificaci&oacute;n humana:
+${filtering}
+
+e) Bit&aacute;cora de prompts:
+${bitacora}
+
+f) Asunci&oacute;n de autor&iacute;a y responsabilidad:
+El estudiante/los autores asume(n) plena responsabilidad intelectual y acad&eacute;mica por el contenido del trabajo, incluidas las decisiones autorales sobre qu&eacute; generar, qu&eacute; incorporar, qu&eacute; descartar y c&oacute;mo integrar lo producido por IA con la elaboraci&oacute;n propia. La asistencia de IA no transfiere autor&iacute;a a los sistemas empleados, los cuales no son coautores conforme a la posici&oacute;n oficial de la APA (McAdoo et al., 2025, Part 3) y de COPE (2024).
+
+${date}
+
+[Firma del estudiante o equipo]`;
+
+  document.getElementById('declOutput').textContent=decl;
+}
+
+// ═══════════════════════════════════════════
+// DOI DETECTOR
+// ═══════════════════════════════════════════
+async function detectDOI(){
+  const input=document.getElementById('doiInput').value.trim();
+  const output=document.getElementById('autoRefOutput');
+  const btn=document.getElementById('doiBtn');
+  if(!input){output.innerHTML='Ingrese un DOI o URL.';return;}
+
+  let doi='';
+  const doiRegex=/\b10\.\d{4,9}\/[-._;()\/:A-Z0-9]+\b/i;
+  const match=input.match(doiRegex);
+  if(match)doi=match[0];
+  else if(input.includes('doi.org/'))doi=input.split('doi.org/')[1].split(/[?#]/)[0];
+  if(!doi){output.innerHTML='&#10060; DOI no v&aacute;lido. Formato: 10.XXXX/XXXX';return;}
+
+  btn.disabled=true;btn.innerHTML='<i class="bi bi-hourglass"></i> Consultando...';
+  try{
+    const res=await fetch(`https://api.crossref.org/works/${doi}`);
+    if(!res.ok)throw new Error();
+    const data=await res.json();
+    const item=data.message;
+    const authors=(item.author||[]).map(a=>`${a.family}, ${a.given?a.given.charAt(0)+'.':''}`).join(', ');
+    const yr=item.published?.['date-parts']?.[0]?.[0]||item.created?.['date-parts']?.[0]?.[0]||'s.f.';
+    const title=item.title?.[0]||'Sin t&iacute;tulo';
+    const journal=item['container-title']?.[0]||'';
+    const vol=item.volume||'';
+    const iss=item.issue||'';
+    const ref=`${authors} (${yr}). <em>${title}</em>. ${journal}${vol?`, ${vol}`:''}${iss?`(${iss})`:''}. https://doi.org/${doi}`;
+    output.innerHTML=ref;
+  }catch(e){
+    output.innerHTML='&#10060; Error al consultar CrossRef. Verifique el DOI.';
+  }
+  btn.disabled=false;btn.innerHTML='<i class="bi bi-search"></i> Detectar';
+}
+
+// ═══════════════════════════════════════════
+// COPY FUNCTIONS
+// ═══════════════════════════════════════════
+async function copyToClipboard(text,html){
+  const fmt=document.querySelector('input[name="copyFmt"]:checked')?.value||'plain';
+  try{
+    if(fmt==='rich'&&html){
+      await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([text],{type:'text/plain'})})]);
+    }else if(fmt==='md'){
+      await navigator.clipboard.writeText(text);
+    }else{
+      await navigator.clipboard.writeText(text);
+    }
+    return true;
+  }catch(e){
+    try{await navigator.clipboard.writeText(text);return true;}catch(e2){return false;}
+  }
+}
+
+function copyRef(){const el=document.getElementById('refOutput');copyToClipboard(el.innerText,el.innerHTML);}
+function copyCite(){copyToClipboard(document.getElementById('citeOutput').innerText);}
+function copyNote(){const el=document.getElementById('noteContent');if(el)copyToClipboard(el.innerText,el.innerHTML);}
+function copyDeclaration(){copyToClipboard(document.getElementById('declOutput').innerText);}
+function copyAutoRef(){copyToClipboard(document.getElementById('autoRefOutput').innerText);}
+
+// ═══════════════════════════════════════════
+// PDF & CSV DOWNLOAD
+// ═══════════════════════════════════════════
+function downloadPDF(type){
+  let content='',title='';
+  if(type==='cita'){
+    title='Cita-APA7-IA';
+    const ref=document.getElementById('refOutput').innerText;
+    const cite=document.getElementById('citeOutput').innerText;
+    content=`CITA APA 7 - CONTENIDO GENERADO POR IA\n\nReferencia:\n${ref}\n\nCita en texto:\n${cite}\n\nGenerado por Gu&iacute;a APA 7 IDC (2026)`;
+  }else if(type==='declaracion'){
+    title='Declaracion-Uso-IA-IDC';
+    content=document.getElementById('declOutput').innerText;
+  }else if(type==='doi'){
+    title='Cita-DOI-APA7';
+    content='REFERENCIA APA 7 DESDE DOI\n\n'+document.getElementById('autoRefOutput').innerText+'\n\nGenerado por Gu&iacute;a APA 7 IDC (2026)';
+  }else if(type==='aias'){
+    title='Escala-AIAS-IDC';
+    content=`ESCALA AIAS REVISADA - IDC (2026)\n\nNivel 1: Sin IA - Ninguno. Entorno supervisado.\nNivel 2: Planificaci&oacute;n asistida - IA solo en ideaci&oacute;n/estructura previa.\nNivel 3: Finalizaci&oacute;n asistida - Redacci&oacute;n, edici&oacute;n, an&aacute;lisis con voz propia.\nNivel 4: IA completa - Uso estrat&eacute;gico durante toda la evaluaci&oacute;n.\nNivel 5: Exploraci&oacute;n de IA - Co-creaci&oacute;n de metodolog&iacute;as.\n\nFuente: Reglamento Institucional IDC sobre Uso &Eacute;tico de IA Generativa (2026)`;
+  }else if(type==='guia'){
+    title='Guia-Cuando-Citar-IA';
+    content=`GU&Iacute;A: &iquest;CU&Aacute;NDO CITAR Y CU&Aacute;NDO NO?\n\nCitar SIEMPRE que:\n- Se reproduzca o parafrasee contenido IA\n- La IA genere esquemas, tablas o categorizaciones\n- La IA traduzca sin verificaci&oacute;n humana\n\nNO es necesario citar cuando:\n- Solo correcci&oacute;n ortotipogr&aacute;fica\n- B&uacute;squeda exploratoria\n- Redacci&oacute;n menor totalmente reescrita\n\nFuente: Gu&iacute;a Institucional IDC APA 7 IA (2026)`;
+  }else if(type==='atribuciones'){
+    title='Atribuciones-Web-IDC';
+    content=`DECLARACI&Oacute;N DE USO DE IA - ESTA WEB\n\nNivel AIAS 4 (IA completa)\nHerramientas: ChatGPT (GPT-4o, OpenAI); Copilot (GitHub)\nFecha: Lima, 2026\n\nReferencia: OpenAI. (2026). ChatGPT (GPT-4o) [Modelo de lenguaje]. https://openai.com`;
+  
+  }else if(type==='academica'){
+    title='Cita-Academica-IDC';
+    var cite=document.getElementById('acOutput').innerText;
+    var fmt=document.querySelector('input[name="acFormat"]:checked').value;
+    content='CITA ACADEMICA - FORMATO '+fmt+'\n\n'+cite+'\n\nGenerado por Guia APA 7 IDC (2026)';}
+
+  const win=window.open('','_blank');
+  win.document.write(`<html><head><title>${title}</title><style>body{font-family:Arial,sans-serif;padding:40px;color:#333;line-height:1.6}h1{color:#0072b9;font-size:1.3rem}pre{white-space:pre-wrap;background:#f8f8f8;padding:1rem;border-radius:8px;border-left:3px solid #f3a100}</style></head><body><h1>${title}</h1><pre>${content}</pre><`+`script>setTimeout(()=>{print();close()},500)<`+`/script></body></html>`);
+  win.document.close();
+}
+
+function downloadCSV(type){
+  let csv='Tipo,Contenido,Fecha\n',content='';
+  if(type==='cita'){
+    const ref=document.getElementById('refOutput').innerText.replace(/,/g,';');
+    const cite=document.getElementById('citeOutput').innerText.replace(/,/g,';');
+    content=`Cita APA 7 IA,"${ref}",2026\nCita en texto,"${cite}",2026`;
+  }else if(type==='declaracion'){
+    const decl=document.getElementById('declOutput').innerText.replace(/,/g,';').replace(/\n/g,' ');
+    content=`Declaracion uso IA,"${decl}",2026`;
+  }else if(type==='doi'){
+    const ref=document.getElementById('autoRefOutput').innerText.replace(/,/g,';');
+    content=`Cita DOI,"${ref}",2026`;
+  }else if(type==='aias'){
+    content='Escala AIAS,"Niveles 1-5 de integracion de IA en evaluaciones IDC",2026';
+  }
+
+  }else if(type==='academica'){
+    var cite=document.getElementById('acOutput').innerText.replace(/,/g,';');
+    var fmt=document.querySelector('input[name="acFormat"]:checked').value;
+    content='Cita Academica '+fmt+',"'+cite+'",2026';  csv+=content;
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+  const link=document.createElement('a');
+  link.href=URL.createObjectURL(blob);
+  link.download=`${type}-IDC-APA7-2026.csv`;
+  link.click();
+}
+
+// ═══════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════
+document.addEventListener('DOMContentLoaded',()=>{
+  renderFields();
+  updateBitacora();
+});
+</script>
+</body>
+</html>
